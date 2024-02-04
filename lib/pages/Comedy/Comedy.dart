@@ -11,7 +11,7 @@ class _ComedyState extends State<Comedy> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text('Comedy'),
+      child: const Text('Comedy'),
     );
   }
 }

@@ -11,7 +11,7 @@ class _TrendingState extends State<Trending> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text('Trending'),
+      child: const Text('Trending'),
     );
   }
 }

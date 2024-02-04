@@ -36,7 +36,7 @@ class Index extends StatefulWidget {
     const Series(),
     const Michezo(),
     const Comedy(),
-    const Tv(),
+    // const Tv()
   ];
 
   const Index({super.key});
@@ -45,11 +45,29 @@ class Index extends StatefulWidget {
   State<Index> createState() => _IndexState();
 }
 
-class _IndexState extends State<Index> {
+class _IndexState extends State<Index> with SingleTickerProviderStateMixin {
+  late final TabController _tabController;
   // const Index({super.key});
   int _selectedIndex = 0;
 
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(
+      initialIndex: 0,
+      length: 5,
+      vsync: this, // Provide vsync from the mixin
+    );
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose(); // Dispose of TabController
+    super.dispose();
+  }
+
   void _onItemTapped(int index) {
+    _tabController.animateTo(index); // Use TabController to switch tabs
     setState(() {
       _selectedIndex = index;
     });
@@ -88,52 +106,31 @@ class _IndexState extends State<Index> {
             ),
           )
         ],
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(40.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Expanded(
-                child: TextButton(
-                  onPressed: () => _onItemTapped(0),
-                  child: const Text('Trending'),
-                ),
-              ),
-              Expanded(
-                child: TextButton(
-                  onPressed: () => _onItemTapped(1),
-                  child: const Text('Movies'),
-                ),
-              ),
-              Expanded(
-                child: TextButton(
-                  onPressed: () => _onItemTapped(2),
-                  child: const Text('Series'),
-                ),
-              ),
-              Expanded(
-                child: TextButton(
-                  onPressed: () => _onItemTapped(3),
-                  child: const Text('Michezo'),
-                ),
-              ),
-              Expanded(
-                child: TextButton(
-                  onPressed: () => _onItemTapped(4),
-                  child: const Text('Comedy'),
-                ),
-              ),
-              Expanded(
-                child: TextButton(
-                  onPressed: () => _onItemTapped(5),
-                  child: const Text('Tv'),
-                ),
-              ),
-            ],
-          ),
+        bottom: TabBar(
+          // isScrollable: true,
+          controller: _tabController,
+          // Using TabBar for a more compact layout
+          labelColor: Colors.white,
+          unselectedLabelColor: Colors.grey,
+          indicatorColor: Colors.white,
+          labelPadding: const EdgeInsets.fromLTRB(2, 0, 8, 0),
+
+          tabs: const [
+            Tab(text: 'Trending'),
+            Tab(text: 'Movies'),
+            Tab(text: 'Series'),
+            Tab(text: 'Michezo'),
+            Tab(text: 'Comedy'),
+            // Tab(text: 'Tv'),
+          ],
+          onTap: _onItemTapped,
         ),
       ),
-      body: Index._pages[_selectedIndex],
+      body: TabBarView(
+        // Use TabBarView to display corresponding pages
+        controller: _tabController,
+        children: Index._pages,
+      ),
       // bottomNavigationBar: BottomNavigationBar(
       //   items: const [
       //     BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),

@@ -11,7 +11,7 @@ class _TvState extends State<Tv> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text('Tv'),
+      child: const Text('Tv'),
     );
   }
 }
