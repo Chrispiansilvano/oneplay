@@ -15,3 +15,4 @@ class _TrendingState extends State<Trending> {
     );
   }
 }
+
