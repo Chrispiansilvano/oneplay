@@ -50,12 +50,28 @@ class _MyHomePageState extends State<MyHomePage> {
       // ),
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
+        // fixedColor: Colors.white,
+        unselectedItemColor: Colors.white,
+        selectedItemColor: const Color.fromARGB(255, 47, 119, 126),
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: const Color.fromARGB(255, 57, 32, 58),
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.movie), label: 'Reels'),
-          BottomNavigationBarItem(icon: Icon(Icons.live_tv), label: 'Live Tv'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle), label: 'Profile'),
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.movie),
+            label: 'Reels',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.live_tv),
+            label: 'Live Tv',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle),
+            label: 'Profile',
+          ),
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
@@ -79,7 +95,7 @@ class HomePage extends StatelessWidget {
       length: 3, // Number of tabs
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 49, 24, 53),
+          backgroundColor: const Color.fromARGB(255, 57, 32, 58),
           leading: Container(
             // padding: const EdgeInsets.all(5),
             padding: const EdgeInsets.fromLTRB(5, 5, 0, 5),
@@ -110,8 +126,8 @@ class HomePage extends StatelessWidget {
             )
           ],
           bottom: const TabBar(
-            labelColor: Colors.white,
-            unselectedLabelColor: Colors.grey,
+            labelColor: Color.fromARGB(255, 47, 119, 126),
+            unselectedLabelColor: Colors.white,
             indicatorColor: Colors.white,
             tabs: [
               Tab(text: 'Trending'),
