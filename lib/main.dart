@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:oneplay/pages/Comedy/Comedy.dart';
+import 'package:oneplay/pages/Michezo/Michezo.dart';
 import 'package:oneplay/pages/Movies/Movies.dart';
 import 'package:oneplay/pages/Profile/Profile.dart';
 import 'package:oneplay/pages/Reels/Reels.dart';
@@ -92,7 +94,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3, // Number of tabs
+      length: 5, // Number of tabs
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(255, 57, 32, 58),
@@ -126,6 +128,7 @@ class HomePage extends StatelessWidget {
             )
           ],
           bottom: const TabBar(
+            labelPadding: EdgeInsets.fromLTRB(0, 0, 5, 0),
             labelColor: Color.fromARGB(255, 47, 119, 126),
             unselectedLabelColor: Colors.white,
             indicatorColor: Colors.white,
@@ -133,6 +136,8 @@ class HomePage extends StatelessWidget {
               Tab(text: 'Trending'),
               Tab(text: 'Movies'),
               Tab(text: 'Series'),
+              Tab(text: 'Michezo'),
+              Tab(text: 'Comedy'),
             ],
           ),
         ),
@@ -143,7 +148,9 @@ class HomePage extends StatelessWidget {
             // Your content for Movies
             Movies(),
             // Your content for Series
-            Series()
+            Series(),
+            Michezo(),
+            Comedy()
           ],
         ),
       ),
