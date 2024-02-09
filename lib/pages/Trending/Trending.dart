@@ -14,9 +14,12 @@ class _TrendingState extends State<Trending> {
   @override
   Widget build(BuildContext context) {
     final myitems = [
-      SizedBox(
+      Container(
         width: MediaQuery.of(context).size.width,
         height: 150.0,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+        ),
         child: Image.asset(
           'images/huba.png',
           fit: BoxFit.cover,
