@@ -21,7 +21,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Navigation Example',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        colorScheme:
+            ColorScheme.fromSwatch(primarySwatch: Colors.blue).copyWith(
+          background: const Color.fromARGB(255, 76, 17, 86),
+        ),
       ),
       home: const MyHomePage(),
     );
@@ -100,7 +103,7 @@ class HomePage extends StatelessWidget {
           backgroundColor: const Color.fromARGB(255, 57, 32, 58),
           leading: Container(
             // padding: const EdgeInsets.all(5),
-            padding: const EdgeInsets.fromLTRB(5, 5, 0, 5),
+            padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
             child: Image.asset(
               'images/logo.png',
 
@@ -119,7 +122,7 @@ class HomePage extends StatelessWidget {
           ),
           actions: const [
             Padding(
-              padding: EdgeInsets.all(10.0),
+              padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
               child: Icon(
                 Icons.search,
                 size: 25,
