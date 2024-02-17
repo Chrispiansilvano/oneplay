@@ -144,7 +144,7 @@ class _TrendingState extends State<Trending> {
                         ),
                       ),
                       Container(
-                        padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
+                        padding: const EdgeInsets.fromLTRB(5, 5, 0, 15),
                         child: const Align(
                           // alignment: Alignment.centerLeft,
                           child: Text(
@@ -174,7 +174,7 @@ class _TrendingState extends State<Trending> {
                         ),
                       ),
                       Container(
-                        padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
+                        padding: const EdgeInsets.fromLTRB(5, 5, 0, 15),
                         child: const Align(
                           // alignment: Alignment.centerLeft,
                           child: Text(
@@ -204,7 +204,7 @@ class _TrendingState extends State<Trending> {
                         ),
                       ),
                       Container(
-                        padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
+                        padding: const EdgeInsets.fromLTRB(5, 5, 0, 15),
                         child: const Align(
                           // alignment: Alignment.centerLeft,
                           child: Text(
@@ -239,7 +239,7 @@ class _TrendingState extends State<Trending> {
                         ),
                       ),
                       Container(
-                        padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
+                        padding: const EdgeInsets.fromLTRB(5, 5, 0, 15),
                         child: const Align(
                           // alignment: Alignment.centerLeft,
                           child: Text(
@@ -269,7 +269,7 @@ class _TrendingState extends State<Trending> {
                         ),
                       ),
                       Container(
-                        padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
+                        padding: const EdgeInsets.fromLTRB(5, 5, 0, 15),
                         child: const Align(
                           // alignment: Alignment.centerLeft,
                           child: Text(
@@ -299,7 +299,7 @@ class _TrendingState extends State<Trending> {
                         ),
                       ),
                       Container(
-                        padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
+                        padding: const EdgeInsets.fromLTRB(5, 5, 0, 15),
                         child: const Align(
                           // alignment: Alignment.centerLeft,
                           child: Text(
@@ -334,7 +334,7 @@ class _TrendingState extends State<Trending> {
                         ),
                       ),
                       Container(
-                        padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
+                        padding: const EdgeInsets.fromLTRB(5, 5, 0, 15),
                         child: const Align(
                           // alignment: Alignment.centerLeft,
                           child: Text(
@@ -364,7 +364,7 @@ class _TrendingState extends State<Trending> {
                         ),
                       ),
                       Container(
-                        padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
+                        padding: const EdgeInsets.fromLTRB(5, 5, 0, 15),
                         child: const Align(
                           // alignment: Alignment.centerLeft,
                           child: Text(
@@ -394,7 +394,7 @@ class _TrendingState extends State<Trending> {
                         ),
                       ),
                       Container(
-                        padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
+                        padding: const EdgeInsets.fromLTRB(5, 5, 0, 15),
                         child: const Align(
                           // alignment: Alignment.centerLeft,
                           child: Text(
@@ -446,7 +446,7 @@ class _TrendingState extends State<Trending> {
                         ),
                       ),
                       Container(
-                        padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
+                        padding: const EdgeInsets.fromLTRB(5, 5, 0, 15),
                         child: const Align(
                           // alignment: Alignment.centerLeft,
                           child: Text(
@@ -476,7 +476,7 @@ class _TrendingState extends State<Trending> {
                         ),
                       ),
                       Container(
-                        padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
+                        padding: const EdgeInsets.fromLTRB(5, 5, 0, 15),
                         child: const Align(
                           // alignment: Alignment.centerLeft,
                           child: Text(
@@ -506,7 +506,7 @@ class _TrendingState extends State<Trending> {
                         ),
                       ),
                       Container(
-                        padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
+                        padding: const EdgeInsets.fromLTRB(5, 5, 0, 15),
                         child: const Align(
                           // alignment: Alignment.centerLeft,
                           child: Text(
@@ -541,7 +541,7 @@ class _TrendingState extends State<Trending> {
                         ),
                       ),
                       Container(
-                        padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
+                        padding: const EdgeInsets.fromLTRB(5, 5, 0, 15),
                         child: const Align(
                           // alignment: Alignment.centerLeft,
                           child: Text(
@@ -571,7 +571,7 @@ class _TrendingState extends State<Trending> {
                         ),
                       ),
                       Container(
-                        padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
+                        padding: const EdgeInsets.fromLTRB(5, 5, 0, 15),
                         child: const Align(
                           // alignment: Alignment.centerLeft,
                           child: Text(
@@ -601,7 +601,7 @@ class _TrendingState extends State<Trending> {
                         ),
                       ),
                       Container(
-                        padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
+                        padding: const EdgeInsets.fromLTRB(5, 5, 0, 15),
                         child: const Align(
                           // alignment: Alignment.centerLeft,
                           child: Text(
