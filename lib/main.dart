@@ -56,8 +56,8 @@ class _MyHomePageState extends State<MyHomePage> {
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         // fixedColor: Colors.white,
-        unselectedItemColor: Colors.white,
-        selectedItemColor: const Color.fromARGB(255, 47, 119, 126),
+        unselectedItemColor: const Color.fromARGB(255, 47, 119, 126),
+        selectedItemColor: Colors.white,
         type: BottomNavigationBarType.fixed,
         backgroundColor: const Color.fromARGB(255, 57, 32, 58),
         items: const [
@@ -132,8 +132,8 @@ class HomePage extends StatelessWidget {
           ],
           bottom: const TabBar(
             labelPadding: EdgeInsets.fromLTRB(0, 0, 5, 0),
-            labelColor: Color.fromARGB(255, 47, 119, 126),
-            unselectedLabelColor: Colors.white,
+            labelColor: Colors.white,
+            unselectedLabelColor: Color.fromARGB(255, 47, 119, 126),
             indicatorColor: Colors.white,
             tabs: [
               Tab(text: 'Trending'),
