@@ -39,10 +39,9 @@ class _ComedyState extends State<Comedy> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        width: 105,
-                        height: 150.0,
+                        width: MediaQuery.of(context).size.width,
+                        height: 180.0,
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5),
                           child: Image.asset(
                             'images/ngalawa.jpg',
                             fit: BoxFit.cover,
@@ -50,77 +49,54 @@ class _ComedyState extends State<Comedy> {
                         ),
                       ),
                       Container(
-                        padding: const EdgeInsets.fromLTRB(5, 5, 0, 15),
-                        child: const Align(
-                          // alignment: Alignment.centerLeft,
+                        width: MediaQuery.of(context).size.width * 0.9,
+                        padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
+                        child: const Flexible(
+                          flex: 1,
                           child: Text(
-                            'Chanda',
+                            'Demu akikufanyia hivi utarudia tena? shughudia, will you do it again ?',
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w400,
-                              fontSize: 15,
+                              fontSize: 13,
                             ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        width: 105,
-                        height: 150.0,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5),
-                          child: Image.asset(
-                            'images/ngalawa.jpg',
-                            fit: BoxFit.cover,
                           ),
                         ),
                       ),
                       Container(
-                        padding: const EdgeInsets.fromLTRB(5, 5, 0, 15),
-                        child: const Align(
-                          // alignment: Alignment.centerLeft,
-                          child: Text(
-                            'Huba',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 15,
+                        width: MediaQuery.of(context).size.width * 0.9,
+                        padding: const EdgeInsets.fromLTRB(5, 0, 0, 15),
+                        child: const Row(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(0, 0, 5, 0),
+                              child: Flexible(
+                                flex: 1,
+                                child: Text(
+                                  '6.9M views',
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 231, 220, 220),
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 10,
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        width: 105,
-                        height: 150.0,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5),
-                          child: Image.asset(
-                            'images/ngalawa.jpg',
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.fromLTRB(5, 5, 0, 15),
-                        child: const Align(
-                          // alignment: Alignment.centerLeft,
-                          child: Text(
-                            'Tears Forever',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 15,
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                              child: Flexible(
+                                flex: 1,
+                                child: Text(
+                                  '3 hrs ago',
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 231, 220, 220),
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 10,
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
+                          ],
                         ),
                       ),
                     ],
