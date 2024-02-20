@@ -70,29 +70,23 @@ class _ComedyState extends State<Comedy> {
                           children: [
                             Padding(
                               padding: EdgeInsets.fromLTRB(0, 0, 5, 0),
-                              child: Flexible(
-                                flex: 1,
-                                child: Text(
-                                  '6.9M views',
-                                  style: TextStyle(
-                                    color: Color.fromARGB(255, 231, 220, 220),
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 10,
-                                  ),
+                              child: Text(
+                                '6.9M views',
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 231, 220, 220),
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 10,
                                 ),
                               ),
                             ),
                             Padding(
                               padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                              child: Flexible(
-                                flex: 1,
-                                child: Text(
-                                  '3 hrs ago',
-                                  style: TextStyle(
-                                    color: Color.fromARGB(255, 231, 220, 220),
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 10,
-                                  ),
+                              child: Text(
+                                '3 hrs ago',
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 231, 220, 220),
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 10,
                                 ),
                               ),
                             ),
