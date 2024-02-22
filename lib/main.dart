@@ -113,7 +113,7 @@ class HomePage extends StatelessWidget {
           title: Title(
             color: const Color.fromARGB(255, 38, 174, 42),
             child: const Text(
-              'Oneplay',
+              'OnePlay',
               style: TextStyle(
                   fontSize: 25,
                   color: Colors.white,
