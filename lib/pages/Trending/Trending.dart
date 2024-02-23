@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:oneplay/pages/MediaView/MediaPlayer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Trending extends StatefulWidget {
@@ -132,14 +133,23 @@ class _TrendingState extends State<Trending> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        width: 105,
-                        height: 150.0,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5),
-                          child: Image.asset(
-                            'images/ngalawa.jpg',
-                            fit: BoxFit.cover,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const MediaPlayer()),
+                          );
+                        },
+                        child: SizedBox(
+                          width: 105,
+                          height: 150.0,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(5),
+                            child: Image.asset(
+                              'images/ngalawa.jpg',
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
