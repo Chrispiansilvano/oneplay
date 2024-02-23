@@ -5,16 +5,8 @@ class MediaPlayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Center(
-      child: Container(
-        child: const Center(
-          child: Text(
-            "This is the media player widget",
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
-      ),
-    ));
+    return const Scaffold(
+      
+    );
   }
 }

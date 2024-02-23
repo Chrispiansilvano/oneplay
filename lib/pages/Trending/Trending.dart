@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:oneplay/pages/MediaView/MediaPlayer.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Trending extends StatefulWidget {
@@ -135,10 +136,12 @@ class _TrendingState extends State<Trending> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(
+                          PersistentNavBarNavigator.pushNewScreen(
                             context,
-                            MaterialPageRoute(
-                                builder: (context) => const MediaPlayer()),
+                            screen: const MediaPlayer(),
+                            withNavBar: true,
+                            pageTransitionAnimation:
+                                PageTransitionAnimation.cupertino,
                           );
                         },
                         child: SizedBox(
