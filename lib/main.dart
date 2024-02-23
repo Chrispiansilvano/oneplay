@@ -151,7 +151,7 @@ class HomePage extends StatelessWidget {
             // Your content for Movies
             Movies(),
             // Your content for Series
-            Series(),
+            Series(),   
             Michezo(),
             Comedy()
           ],
