@@ -7,6 +7,7 @@ import 'package:oneplay/pages/Reels/Reels.dart';
 import 'package:oneplay/pages/Series/Series.dart';
 import 'package:oneplay/pages/Trending/Trending.dart';
 import 'package:oneplay/pages/Tv/Tv.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,6 +41,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
+  final _controller = PersistentTabController(initialIndex: 0);
   final List<Widget> _pages = [
     const HomePage(), // Your Home page with TabBarView
     const Reels(), // Your Explore page
@@ -47,41 +49,77 @@ class _MyHomePageState extends State<MyHomePage> {
     const Profile(),
   ];
 
+  List<PersistentBottomNavBarItem> _navBarsItems() {
+    return [
+      PersistentBottomNavBarItem(
+        icon: const Icon(Icons.home),
+        title: ("Home"),
+        activeColorPrimary: Colors.white,
+        inactiveColorPrimary: const Color.fromARGB(255, 47, 119, 126),
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(Icons.movie),
+        title: ("Reels"), 
+        activeColorPrimary: Colors.white,
+        inactiveColorPrimary: const Color.fromARGB(255, 47, 119, 126),
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(Icons.live_tv),
+        title: ("Live Tv"),
+        activeColorPrimary: Colors.white,
+        inactiveColorPrimary: const Color.fromARGB(255, 47, 119, 126),
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(Icons.account_circle),
+        title: ("Profile"),
+        activeColorPrimary: Colors.white,
+        inactiveColorPrimary: const Color.fromARGB(255, 47, 119, 126),
+      ),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text('Navigation Example'),
-      // ),
-      body: _pages[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        // fixedColor: Colors.white,
-        unselectedItemColor: const Color.fromARGB(255, 47, 119, 126),
-        selectedItemColor: Colors.white,
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: const Color.fromARGB(255, 57, 32, 58),
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.movie),
-            label: 'Reels',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.live_tv),
-            label: 'Live Tv',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            label: 'Profile',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-      ),
+    return PersistentTabView(
+      context,
+      screens: _pages,
+      items: _navBarsItems(),
+      controller: _controller,
+      navBarStyle: NavBarStyle.style1,
+      backgroundColor: const Color.fromARGB(255, 57, 32, 58),
+      popAllScreensOnTapOfSelectedTab: true,
     );
+    // return Scaffold(
+
+    //   body: _pages[_selectedIndex],
+    //   bottomNavigationBar: BottomNavigationBar(
+    //     // fixedColor: Colors.white,
+    //     unselectedItemColor: const Color.fromARGB(255, 47, 119, 126),
+    //     selectedItemColor: Colors.white,
+    //     type: BottomNavigationBarType.fixed,
+    //     backgroundColor: const Color.fromARGB(255, 57, 32, 58),
+    //     items: const [
+    //       BottomNavigationBarItem(
+    //         icon: Icon(Icons.home),
+    //         label: 'Home',
+    //       ),
+    //       BottomNavigationBarItem(
+    //         icon: Icon(Icons.movie),
+    //         label: 'Reels',
+    //       ),
+    //       BottomNavigationBarItem(
+    //         icon: Icon(Icons.live_tv),
+    //         label: 'Live Tv',
+    //       ),
+    //       BottomNavigationBarItem(
+    //         icon: Icon(Icons.account_circle),
+    //         label: 'Profile',
+    //       ),
+    //     ],
+    //     currentIndex: _selectedIndex,
+    //     onTap: _onItemTapped,
+    //   ),
+    // );
   }
 
   void _onItemTapped(int index) {
@@ -151,7 +189,7 @@ class HomePage extends StatelessWidget {
             // Your content for Movies
             Movies(),
             // Your content for Series
-            Series(),   
+            Series(),
             Michezo(),
             Comedy()
           ],
