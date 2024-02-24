@@ -47,7 +47,8 @@ class _MyHomePageState extends State<MyHomePage> {
     const Reels(), // Your Explore page
     const Tv(), // Your Settings page
     // const Profile(),
-    const SignUp()
+    const SignUp(),
+    // const LogIn()
   ];
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
