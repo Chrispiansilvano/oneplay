@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:oneplay/pages/Comedy/Comedy.dart';
 import 'package:oneplay/pages/Michezo/Michezo.dart';
 import 'package:oneplay/pages/Movies/Movies.dart';
-import 'package:oneplay/pages/Profile/Profile.dart';
 import 'package:oneplay/pages/Reels/Reels.dart';
 import 'package:oneplay/pages/Series/Series.dart';
 import 'package:oneplay/pages/Trending/Trending.dart';
 import 'package:oneplay/pages/Tv/Tv.dart';
+import 'package:oneplay/pages/auth/SignUp.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 void main() {
@@ -46,7 +46,8 @@ class _MyHomePageState extends State<MyHomePage> {
     const HomePage(), // Your Home page with TabBarView
     const Reels(), // Your Explore page
     const Tv(), // Your Settings page
-    const Profile(),
+    // const Profile(),
+    const SignUp()
   ];
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
