@@ -59,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(Icons.movie),
-        title: ("Reels"), 
+        title: ("Reels"),
         activeColorPrimary: Colors.white,
         inactiveColorPrimary: const Color.fromARGB(255, 47, 119, 126),
       ),
@@ -85,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
       screens: _pages,
       items: _navBarsItems(),
       controller: _controller,
-      navBarStyle: NavBarStyle.style1,
+      navBarStyle: NavBarStyle.simple,
       backgroundColor: const Color.fromARGB(255, 57, 32, 58),
       popAllScreensOnTapOfSelectedTab: true,
     );

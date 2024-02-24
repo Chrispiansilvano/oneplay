@@ -138,7 +138,7 @@ class _TrendingState extends State<Trending> {
                         onTap: () {
                           PersistentNavBarNavigator.pushNewScreen(
                             context,
-                            screen: const MediaPlayer(),
+                            screen: MediaPlayer(),
                             withNavBar: true,
                             pageTransitionAnimation:
                                 PageTransitionAnimation.cupertino,
@@ -425,10 +425,10 @@ class _TrendingState extends State<Trending> {
                 ],
               ),
               const SizedBox(
-                height: 15,
+                height: 5,
               ),
               Container(
-                padding: const EdgeInsets.fromLTRB(15, 10, 0, 10),
+                padding: const EdgeInsets.fromLTRB(15, 5, 0, 10),
                 child: const Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
