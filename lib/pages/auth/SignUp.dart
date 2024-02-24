@@ -33,7 +33,9 @@ class SignUp extends StatelessWidget {
           child: const Text(
             'Your gateway to endless Entertinment',
             style: TextStyle(
-                fontSize: 15, fontWeight: FontWeight.w500, color: Color.fromARGB(255, 223, 221, 221)),
+                fontSize: 15,
+                fontWeight: FontWeight.w500,
+                color: Color.fromARGB(255, 223, 221, 221)),
           ),
         ),
         Container(
