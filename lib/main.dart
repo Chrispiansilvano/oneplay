@@ -6,7 +6,7 @@ import 'package:oneplay/pages/Reels/Reels.dart';
 import 'package:oneplay/pages/Series/Series.dart';
 import 'package:oneplay/pages/Trending/Trending.dart';
 import 'package:oneplay/pages/Tv/Tv.dart';
-import 'package:oneplay/pages/auth/SignUp.dart';
+import 'package:oneplay/pages/auth/LogIn.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 void main() {
@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Navigation Example',
       theme: ThemeData(
+        
         colorScheme:
             ColorScheme.fromSwatch(primarySwatch: Colors.blue).copyWith(
           background: const Color.fromARGB(255, 76, 17, 86),
@@ -47,8 +48,8 @@ class _MyHomePageState extends State<MyHomePage> {
     const Reels(), // Your Explore page
     const Tv(), // Your Settings page
     // const Profile(),
-    const SignUp(),
-    // const LogIn()
+    // SignUp(),
+    LogIn()
   ];
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
