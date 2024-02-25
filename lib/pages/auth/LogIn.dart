@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:oneplay/pages/auth/SignUp.dart';
 
-class LogIn extends StatelessWidget {
-  LogIn({super.key});
+class LogIn extends StatefulWidget {
+  const LogIn({super.key});
+
+  @override
+  State<LogIn> createState() => _LogInState();
+}
+
+class _LogInState extends State<LogIn> {
   final _LoginformKey = GlobalKey<FormState>();
+
   String _mobileNumber = '';
+
   String _password = '';
 
   @override

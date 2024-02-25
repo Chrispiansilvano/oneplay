@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:oneplay/pages/auth/LogIn.dart';
 
-class SignUp extends StatelessWidget {
-  SignUp({super.key});
+class SignUp extends StatefulWidget {
+  const SignUp({super.key});
 
+  @override
+  State<SignUp> createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUp> {
   final _SignUpformKey = GlobalKey<FormState>();
 
   String _mobileNumber = '';
@@ -56,7 +61,7 @@ class SignUp extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.50,
+                  height: MediaQuery.of(context).size.height * 0.60,
                   width: MediaQuery.of(context).size.width * 0.80,
                   decoration: BoxDecoration(
                     color: Colors.grey.shade100,
@@ -207,7 +212,7 @@ class SignUp extends StatelessWidget {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => LogIn()));
+                                        builder: (context) => const LogIn()));
                               },
                               child:
                                   const Text('Already have an account? Login'),
