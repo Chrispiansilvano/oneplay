@@ -49,26 +49,6 @@ class Reels extends StatelessWidget {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // class Reels extends StatelessWidget {
 //   const Reels({super.key});
 

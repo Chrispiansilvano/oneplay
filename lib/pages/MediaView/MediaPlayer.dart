@@ -106,6 +106,7 @@ class MediaPlayer extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -189,7 +190,7 @@ class MediaPlayer extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(5, 5, 5, 0),
+              padding: const EdgeInsets.fromLTRB(8, 5, 8, 0),
               child: Center(
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
