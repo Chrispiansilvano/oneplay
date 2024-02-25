@@ -45,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final _controller = PersistentTabController(initialIndex: 0);
   final List<Widget> _pages = [
     const HomePage(), // Your Home page with TabBarView
-    const Reels(), // Your Explore page
+     Reels(), // Your Explore page
     const Tv(), // Your Settings page
     // const Profile(),
     // SignUp(),
