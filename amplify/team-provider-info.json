@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-oneplay-staging-204609-authRole",
+      "UnauthRoleArn": "arn:aws:iam::975050213961:role/amplify-oneplay-staging-204609-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::975050213961:role/amplify-oneplay-staging-204609-authRole",
+      "Region": "eu-north-1",
+      "DeploymentBucketName": "amplify-oneplay-staging-204609-deployment",
+      "UnauthRoleName": "amplify-oneplay-staging-204609-unauthRole",
+      "StackName": "amplify-oneplay-staging-204609",
+      "StackId": "arn:aws:cloudformation:eu-north-1:975050213961:stack/amplify-oneplay-staging-204609/e7cdddc0-d41e-11ee-91da-067ee48e0fd0",
+      "AmplifyAppId": "d2xh1z7wdbr68v"
+    },
+    "categories": {
+      "auth": {
+        "oneplayf2c3f564": {}
+      }
+    }
+  }
+}

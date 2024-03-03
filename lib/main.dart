@@ -8,21 +8,49 @@ import 'package:oneplay/pages/Trending/Trending.dart';
 import 'package:oneplay/pages/Tv/Tv.dart';
 import 'package:oneplay/pages/auth/LogIn.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:amplify_flutter/amplify_flutter.dart';
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
+import 'amplifyconfiguration.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool _amplifyConfigured = false;
+  @override
+  void initState() {
+    super.initState();
+    _configureAmplify();
+  }
+
+  Future<void> _configureAmplify() async {
+    try {
+      final auth = AmplifyAuthCognito();
+      await Amplify.addPlugin(auth);
+
+      // call Amplify.configure to use the initialized categories in your app
+      await Amplify.configure(amplifyconfig);
+    } on Exception catch (e) {
+      safePrint('An error occurred configuring Amplify: $e');
+    }
+    setState(() {
+      _amplifyConfigured = true;
+    });
+  }
+
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Navigation Example',
       theme: ThemeData(
-        
         colorScheme:
             ColorScheme.fromSwatch(primarySwatch: Colors.blue).copyWith(
           background: const Color.fromARGB(255, 76, 17, 86),
@@ -45,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final _controller = PersistentTabController(initialIndex: 0);
   final List<Widget> _pages = [
     const HomePage(), // Your Home page with TabBarView
-     Reels(), // Your Explore page
+    Reels(), // Your Explore page
     const Tv(), // Your Settings page
     // const Profile(),
     // SignUp(),
@@ -109,7 +137,8 @@ class _MyHomePageState extends State<MyHomePage> {
     //       BottomNavigationBarItem(
     //         icon: Icon(Icons.movie),
     //         label: 'Reels',
-    //       ),
+    //       ), 020
+
     //       BottomNavigationBarItem(
     //         icon: Icon(Icons.live_tv),
     //         label: 'Live Tv',
