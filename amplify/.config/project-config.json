@@ -2,7 +2,7 @@
   "providers": [
     "awscloudformation"
   ],
-  "projectName": "Oneplay",
+  "projectName": "oneplay",
   "version": "3.1",
   "frontend": "flutter",
   "flutter": {

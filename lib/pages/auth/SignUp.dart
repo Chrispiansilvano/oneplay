@@ -1,24 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:oneplay/pages/Providers/Providers.dart';
 import 'package:oneplay/pages/auth/LogIn.dart';
+import 'package:oneplay/pages/auth/aws_auth.dart';
 
-class SignUp extends StatefulWidget {
-  const SignUp({super.key});
+class SignUp extends ConsumerWidget {
+  final _signUpformKey = GlobalKey<FormState>();
+
+  final _userNameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+
+  SignUp({super.key});
+
+  // @override
+  // void dispose() {
+  //   _userNameController.dispose();
+  //   _emailController.dispose();
+  //   _passwordController.dispose();
+  //   _confirmPasswordController.dispose();
+  //   dispose();
+  // }
 
   @override
-  State<SignUp> createState() => _SignUpState();
-}
-
-class _SignUpState extends State<SignUp> {
-  final _SignUpformKey = GlobalKey<FormState>();
-
-  String _mobileNumber = '';
-
-  String _password = '';
-
-  final String _confirmPassword = '';
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final username = ref.watch(usernameProvider);
+    final email = ref.watch(emailProvider);
+    final password = ref.watch(passwordProvider);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -28,7 +37,7 @@ class _SignUpState extends State<SignUp> {
             child: Column(
               children: [
                 const SizedBox(
-                  height: 50,
+                  height: 25,
                 ),
                 Container(
                   // padding: const EdgeInsets.all(5),
@@ -85,7 +94,7 @@ class _SignUpState extends State<SignUp> {
                         height: 15,
                       ),
                       Form(
-                        key: _SignUpformKey,
+                        key: _signUpformKey,
                         child: Column(
                           children: <Widget>[
                             // Mobile number field
@@ -93,7 +102,8 @@ class _SignUpState extends State<SignUp> {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 25),
                               child: TextFormField(
-                                key: const ValueKey('mobileNumber'),
+                                controller: _userNameController,
+                                key: const ValueKey('Username'),
                                 decoration: InputDecoration(
                                   enabledBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(color: Colors.white),
@@ -103,17 +113,48 @@ class _SignUpState extends State<SignUp> {
                                         BorderSide(color: Colors.grey.shade300),
                                   ),
                                   fillColor: Colors.grey.shade200,
-                                  labelText: 'Mobile Number',
-                                  hintText: 'Enter your mobile number',
+                                  labelText: 'Username',
+                                  hintText: 'Enter your Username',
                                 ),
-                                keyboardType: TextInputType.phone,
+                                keyboardType: TextInputType.text,
                                 validator: (value) {
                                   if (value!.isEmpty) {
-                                    return 'Mobile number is required';
+                                    return 'Username is required';
                                   }
                                   return null;
                                 },
-                                onSaved: (value) => _mobileNumber = value!,
+                                // onSaved: (value) => _mobileNumber = value!,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 25),
+                              child: TextFormField(
+                                controller: _emailController,
+                                key: const ValueKey('Email'),
+                                decoration: InputDecoration(
+                                  enabledBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.white),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.grey.shade300),
+                                  ),
+                                  fillColor: Colors.grey.shade200,
+                                  labelText: 'Email',
+                                  hintText: 'Enter your Email',
+                                ),
+                                keyboardType: TextInputType.text,
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Email is required';
+                                  }
+                                  return null;
+                                },
+                                // onSaved: (value) => _mobileNumber = value!,
                               ),
                             ),
                             const SizedBox(
@@ -124,6 +165,7 @@ class _SignUpState extends State<SignUp> {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 25),
                               child: TextFormField(
+                                controller: _passwordController,
                                 key: const ValueKey('password'),
                                 decoration: InputDecoration(
                                   labelText: 'Password',
@@ -146,7 +188,7 @@ class _SignUpState extends State<SignUp> {
                                   }
                                   return null;
                                 },
-                                onSaved: (value) => _password = value!,
+                                // onSaved: (value) => password = value!,
                               ),
                             ),
                             const SizedBox(height: 15),
@@ -155,6 +197,7 @@ class _SignUpState extends State<SignUp> {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 25),
                               child: TextFormField(
+                                controller: _confirmPasswordController,
                                 key: const ValueKey('confirmPassword'),
                                 decoration: InputDecoration(
                                   labelText: 'Confirm Password',
@@ -172,7 +215,8 @@ class _SignUpState extends State<SignUp> {
                                 validator: (value) {
                                   if (value!.isEmpty) {
                                     return 'Confirm password is required';
-                                  } else if (value != _password) {
+                                  } else if (value !=
+                                      _passwordController.text) {
                                     return 'Passwords do not match';
                                   }
                                   return null;
@@ -184,10 +228,17 @@ class _SignUpState extends State<SignUp> {
                             ),
                             // Sign up button
                             ElevatedButton(
-                              onPressed: () {
-                                if (_SignUpformKey.currentState!.validate()) {
-                                  _SignUpformKey.currentState!.save();
+                              onPressed: () async {
+                                if (_signUpformKey.currentState!.validate()) {
+                                  _signUpformKey.currentState!.save();
                                   // Process signup logic with `_mobileNumber` and `_password`
+                                  final authService = ref.read(
+                                      authServiceProvider); // Read the AuthServices instance
+                                  await authService.signUpUser(
+                                    username: username,
+                                    email: email,
+                                    password: password,
+                                  );
                                 }
                               },
                               style: ElevatedButton.styleFrom(

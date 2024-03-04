@@ -1,19 +1,22 @@
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
+import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:oneplay/pages/Comedy/Comedy.dart';
 import 'package:oneplay/pages/Michezo/Michezo.dart';
 import 'package:oneplay/pages/Movies/Movies.dart';
+import 'package:oneplay/pages/Profile/Profile.dart';
 import 'package:oneplay/pages/Reels/Reels.dart';
 import 'package:oneplay/pages/Series/Series.dart';
 import 'package:oneplay/pages/Trending/Trending.dart';
 import 'package:oneplay/pages/Tv/Tv.dart';
-import 'package:oneplay/pages/auth/LogIn.dart';
+import 'package:oneplay/pages/auth/SignUp.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
-import 'package:amplify_flutter/amplify_flutter.dart';
-import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
+
 import 'amplifyconfiguration.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatefulWidget {
@@ -24,7 +27,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool _amplifyConfigured = false;
+  final bool _amplifyConfigured = false;
+  late AmplifyAuthCognito auth;
   @override
   void initState() {
     super.initState();
@@ -32,32 +36,35 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> _configureAmplify() async {
-    try {
-      final auth = AmplifyAuthCognito();
-      await Amplify.addPlugin(auth);
+    // Add any Amplify plugins you want to use
+    final authPlugin = AmplifyAuthCognito();
+    await Amplify.addPlugin(authPlugin);
 
-      // call Amplify.configure to use the initialized categories in your app
+    // You can use addPlugins if you are going to be adding multiple plugins
+    // await Amplify.addPlugins([authPlugin, analyticsPlugin]);
+
+    // Once Plugins are added, configure Amplify
+    // Note: Amplify can only be configured once.
+    try {
       await Amplify.configure(amplifyconfig);
-    } on Exception catch (e) {
-      safePrint('An error occurred configuring Amplify: $e');
+    } on AmplifyAlreadyConfiguredException {
+      safePrint(
+          "Tried to reconfigure Amplify; this can occur when your app restarts on Android.");
     }
-    setState(() {
-      _amplifyConfigured = true;
-    });
   }
 
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Navigation Example',
-      theme: ThemeData(
-        colorScheme:
-            ColorScheme.fromSwatch(primarySwatch: Colors.blue).copyWith(
-          background: const Color.fromARGB(255, 76, 17, 86),
+        debugShowCheckedModeBanner: false,
+        title: 'Navigation Example',
+        theme: ThemeData(
+          colorScheme:
+              ColorScheme.fromSwatch(primarySwatch: Colors.blue).copyWith(
+            background: const Color.fromARGB(255, 76, 17, 86),
+          ),
         ),
-      ),
-      home: const MyHomePage(),
-    );
+        home: SignUp());
   }
 }
 
@@ -75,9 +82,9 @@ class _MyHomePageState extends State<MyHomePage> {
     const HomePage(), // Your Home page with TabBarView
     Reels(), // Your Explore page
     const Tv(), // Your Settings page
-    // const Profile(),
+    const Profile(),
     // SignUp(),
-    LogIn()
+    // const LogIn(),
   ];
 
   List<PersistentBottomNavBarItem> _navBarsItems() {

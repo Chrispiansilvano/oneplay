@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "oneplayf2c3f564_identitypool_f2c3f564",
+    "identityPoolName": "oneplaya450058d_identitypool_a450058d",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "oneplaf2c3f564",
-    "userPoolName": "oneplayf2c3f564_userpool_f2c3f564",
+    "resourceNameTruncated": "oneplaa450058d",
+    "userPoolName": "oneplaya450058d_userpool_a450058d",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -31,14 +31,14 @@
     "userpoolClientReadAttributes": [
       "email"
     ],
-    "userpoolClientLambdaRole": "oneplaf2c3f564_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "oneplaa450058d_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "f2c3f564",
-    "resourceName": "oneplayf2c3f564",
+    "sharedId": "a450058d",
+    "resourceName": "oneplaya450058d",
     "authSelections": "identityPoolAndUserPool",
     "useDefault": "default",
     "usernameAttributes": [
-      "phone_number"
+      "email"
     ],
     "userPoolGroupList": [],
     "serviceName": "Cognito",
