@@ -9,9 +9,11 @@ class LogIn extends StatefulWidget {
 }
 
 class _LogInState extends State<LogIn> {
-  final _loginformKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+  final _LoginformKey = GlobalKey<FormState>();
+
+  String _mobileNumber = '';
+
+  String _password = '';
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +85,7 @@ class _LogInState extends State<LogIn> {
                             height: 15,
                           ),
                           Form(
-                            key: _loginformKey,
+                            key: _LoginformKey,
                             child: Column(
                               children: <Widget>[
                                 // Mobile number field
@@ -91,8 +93,7 @@ class _LogInState extends State<LogIn> {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 25),
                                   child: TextFormField(
-                                    controller: _emailController,
-                                    key: const ValueKey('Email'),
+                                    key: const ValueKey('mobileNumber'),
                                     decoration: InputDecoration(
                                       enabledBorder: const OutlineInputBorder(
                                         borderSide:
@@ -103,22 +104,17 @@ class _LogInState extends State<LogIn> {
                                             color: Colors.grey.shade300),
                                       ),
                                       fillColor: Colors.grey.shade200,
-                                      labelText: 'email',
-                                      hintText: 'Enter your email',
+                                      labelText: 'Mobile Number',
+                                      hintText: 'Enter your mobile number',
                                     ),
-                                    keyboardType: TextInputType.text,
+                                    keyboardType: TextInputType.phone,
                                     validator: (value) {
                                       if (value!.isEmpty) {
-                                        return 'Username is required';
+                                        return 'Mobile number is required';
                                       }
                                       return null;
                                     },
-                                    // onSaved: (value) => _mobileNumber = value!,
-                                    onChanged: (val) {
-                                      setState(() {
-                                        _emailController.text = val;
-                                      });
-                                    },
+                                    onSaved: (value) => _mobileNumber = value!,
                                   ),
                                 ),
                                 const SizedBox(
@@ -129,7 +125,6 @@ class _LogInState extends State<LogIn> {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 25),
                                   child: TextFormField(
-                                    controller: _passwordController,
                                     key: const ValueKey('password'),
                                     decoration: InputDecoration(
                                       labelText: 'Password',
@@ -153,10 +148,7 @@ class _LogInState extends State<LogIn> {
                                       }
                                       return null;
                                     },
-                                    // onSaved: (value) => _password = value!,
-                                    onChanged: (val) {
-                                      _passwordController.text = val;
-                                    },
+                                    onSaved: (value) => _password = value!,
                                   ),
                                 ),
                                 const SizedBox(height: 15),
@@ -165,9 +157,9 @@ class _LogInState extends State<LogIn> {
                                 // Sign up button
                                 ElevatedButton(
                                   onPressed: () {
-                                    if (_loginformKey.currentState!
+                                    if (_LoginformKey.currentState!
                                         .validate()) {
-                                      _loginformKey.currentState!.save();
+                                      _LoginformKey.currentState!.save();
                                       // Process signup logic with `_mobileNumber` and `_password`
                                     }
                                   },
@@ -193,8 +185,7 @@ class _LogInState extends State<LogIn> {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) =>
-                                                 SignUp()));
+                                            builder: (context) => SignUp()));
                                   },
                                   child: const Text(
                                       'Already have an account? Login'),

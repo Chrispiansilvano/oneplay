@@ -246,10 +246,15 @@ class SignUp extends StatelessWidget {
                             // Sign up button
                             ElevatedButton(
                               onPressed: () async {
-                                signUpUser(
-                                    username: _userNameController.text,
-                                    email: _emailController.text,
-                                    password: _passwordController.text);
+                                if (_signUpformKey.currentState!.validate()) {
+                                  _signUpformKey.currentState!.save();
+                                  // Process signup logic with `_mobileNumber` and `_password`
+                                  // Read the AuthServices instance
+                                  signUpUser(
+                                      username: _userNameController.text,
+                                      email: _emailController.text,
+                                      password: _passwordController.text);
+                                }
                               },
                               style: ElevatedButton.styleFrom(
                                 foregroundColor: Colors.white,

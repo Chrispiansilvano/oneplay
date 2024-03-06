@@ -13,10 +13,9 @@ import 'package:oneplay/pages/Tv/Tv.dart';
 import 'package:oneplay/pages/auth/SignUp.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
-import 'amplifyconfiguration.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  // WidgetsFlutterBinding.ensureInitialized();
   await _configureAmplify();
   runApp(const ProviderScope(child: MyApp()));
 }
@@ -32,7 +31,7 @@ Future<void> _configureAmplify() async {
   // Once Plugins are added, configure Amplify
   // Note: Amplify can only be configured once.
   try {
-    await Amplify.configure(amplifyconfig);
+   
   } on AmplifyAlreadyConfiguredException {
     safePrint(
         "Tried to reconfigure Amplify; this can occur when your app restarts on Android.");
@@ -242,3 +241,4 @@ class HomePage extends StatelessWidget {
 
 // Implement ExplorePage and SettingsPage similarly with their content
 
+  
