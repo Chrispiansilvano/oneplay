@@ -34,6 +34,8 @@ dependencies:
   carousel_slider: ^4.2.1
   chewie: 1.5.0
   cupertino_icons: ^1.0.2
+  firebase_auth: ^4.17.7
+  firebase_core: ^2.24.2
   flick_video_player: ^0.7.0
   flutter:
     sdk: flutter
@@ -47,7 +49,6 @@ dev_dependencies:
   flutter_lints: ^3.0.1
   flutter_test:
     sdk: flutter
-  amplify_codegen: ^1.4.0
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.

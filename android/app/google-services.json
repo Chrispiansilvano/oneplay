@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "708199264653",
+    "firebase_url": "https://oneplay-fe259-default-rtdb.firebaseio.com",
+    "project_id": "oneplay-fe259",
+    "storage_bucket": "oneplay-fe259.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:708199264653:android:ba6e0aa07ed92ae1348dc4",
+        "android_client_info": {
+          "package_name": "com.example.oneplay"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5fNeILKIsxXwnJMLs3w90FAkrN0qhPNM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

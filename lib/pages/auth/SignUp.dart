@@ -1,10 +1,8 @@
+import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:oneplay/pages/Providers/Providers.dart';
 import 'package:oneplay/pages/auth/LogIn.dart';
-import 'package:oneplay/pages/auth/aws_auth.dart';
 
-class SignUp extends ConsumerWidget {
+class SignUp extends StatelessWidget {
   final _signUpformKey = GlobalKey<FormState>();
 
   final _userNameController = TextEditingController();
@@ -22,12 +20,31 @@ class SignUp extends ConsumerWidget {
   //   _confirmPasswordController.dispose();
   //   dispose();
   // }
+  Future<void> signUpUser({
+    required String username,
+    required String email,
+    required String password,
+  }) async {
+    try {
+      final userAttributes = {
+        AuthUserAttributeKey.email: email,
+        // additional attributes as needed
+      };
+      final result = await Amplify.Auth.signUp(
+        username: username,
+        password: password,
+        options: SignUpOptions(
+          userAttributes: userAttributes,
+        ),
+      );
+      print("User creation succeeded");
+    } on AuthException catch (e) {
+      safePrint('Error signing up user: ${e.message}');
+    }
+  }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final username = ref.watch(usernameProvider);
-    final email = ref.watch(emailProvider);
-    final password = ref.watch(passwordProvider);
+  Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -229,17 +246,10 @@ class SignUp extends ConsumerWidget {
                             // Sign up button
                             ElevatedButton(
                               onPressed: () async {
-                                if (_signUpformKey.currentState!.validate()) {
-                                  _signUpformKey.currentState!.save();
-                                  // Process signup logic with `_mobileNumber` and `_password`
-                                  final authService = ref.read(
-                                      authServiceProvider); // Read the AuthServices instance
-                                  await authService.signUpUser(
-                                    username: username,
-                                    email: email,
-                                    password: password,
-                                  );
-                                }
+                                signUpUser(
+                                    username: _userNameController.text,
+                                    email: _emailController.text,
+                                    password: _passwordController.text);
                               },
                               style: ElevatedButton.styleFrom(
                                 foregroundColor: Colors.white,

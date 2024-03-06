@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:oneplay/pages/auth/aws_auth.dart';
 
 class ConfirmationPage extends StatefulWidget {
   final username;

@@ -15,8 +15,28 @@ import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import 'amplifyconfiguration.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await _configureAmplify();
   runApp(const ProviderScope(child: MyApp()));
+}
+
+Future<void> _configureAmplify() async {
+  // Add any Amplify plugins you want to use
+  final authPlugin = AmplifyAuthCognito();
+  await Amplify.addPlugin(authPlugin);
+
+  // You can use addPlugins if you are going to be adding multiple plugins
+  // await Amplify.addPlugins([authPlugin, analyticsPlugin]);
+
+  // Once Plugins are added, configure Amplify
+  // Note: Amplify can only be configured once.
+  try {
+    await Amplify.configure(amplifyconfig);
+  } on AmplifyAlreadyConfiguredException {
+    safePrint(
+        "Tried to reconfigure Amplify; this can occur when your app restarts on Android.");
+  }
 }
 
 class MyApp extends StatefulWidget {
@@ -33,24 +53,6 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     _configureAmplify();
-  }
-
-  Future<void> _configureAmplify() async {
-    // Add any Amplify plugins you want to use
-    final authPlugin = AmplifyAuthCognito();
-    await Amplify.addPlugin(authPlugin);
-
-    // You can use addPlugins if you are going to be adding multiple plugins
-    // await Amplify.addPlugins([authPlugin, analyticsPlugin]);
-
-    // Once Plugins are added, configure Amplify
-    // Note: Amplify can only be configured once.
-    try {
-      await Amplify.configure(amplifyconfig);
-    } on AmplifyAlreadyConfiguredException {
-      safePrint(
-          "Tried to reconfigure Amplify; this can occur when your app restarts on Android.");
-    }
   }
 
   @override
