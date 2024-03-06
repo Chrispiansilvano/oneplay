@@ -1,6 +1,6 @@
 {
   "auth": {
-    "oneplay4f82e2eb": {
+    "oneplayf2c3f564": {
       "customAuth": false,
       "dependsOn": [],
       "frontendAuthConfig": {
@@ -17,7 +17,7 @@
         ],
         "socialProviders": [],
         "usernameAttributes": [
-          "EMAIL"
+          "PHONE_NUMBER"
         ],
         "verificationMechanisms": [
           "EMAIL"
