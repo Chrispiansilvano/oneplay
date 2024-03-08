@@ -50,21 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyB5fNeILKIsxXwnJMLs3w90FAkrN0qhPNM',
-    appId: '1:708199264653:android:ba6e0aa07ed92ae1348dc4',
-    messagingSenderId: '708199264653',
-    projectId: 'oneplay-fe259',
-    databaseURL: 'https://oneplay-fe259-default-rtdb.firebaseio.com',
-    storageBucket: 'oneplay-fe259.appspot.com',
+    apiKey: 'AIzaSyCMrrAnCyeDm0VYGAyjU-R8q4tBal_6Hww',
+    appId: '1:910152454355:android:adc9010d340c26b1a98426',
+    messagingSenderId: '910152454355',
+    projectId: 'oneplay-7fd21',
+    storageBucket: 'oneplay-7fd21.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyA6OO_B5lraKmUwihlVMxm2zQJEKIYWYDI',
-    appId: '1:708199264653:ios:9ed8f8b5de4eb047348dc4',
-    messagingSenderId: '708199264653',
-    projectId: 'oneplay-fe259',
-    databaseURL: 'https://oneplay-fe259-default-rtdb.firebaseio.com',
-    storageBucket: 'oneplay-fe259.appspot.com',
+    apiKey: 'AIzaSyCIkdfg4MAfxqOeIUbHDSoZwIXgur57Oc4',
+    appId: '1:910152454355:ios:2a26b68efea92052a98426',
+    messagingSenderId: '910152454355',
+    projectId: 'oneplay-7fd21',
+    storageBucket: 'oneplay-7fd21.appspot.com',
     iosBundleId: 'com.example.oneplay',
   );
 }

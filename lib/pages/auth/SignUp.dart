@@ -1,45 +1,65 @@
-import 'package:amplify_flutter/amplify_flutter.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:oneplay/main.dart';
 import 'package:oneplay/pages/auth/LogIn.dart';
 
-class SignUp extends StatelessWidget {
+class SignUp extends StatefulWidget {
+  const SignUp({super.key});
+
+  @override
+  State<SignUp> createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUp> {
   final _signUpformKey = GlobalKey<FormState>();
 
   final _userNameController = TextEditingController();
+
   final _emailController = TextEditingController();
+
   final _passwordController = TextEditingController();
+
   final _confirmPasswordController = TextEditingController();
 
-  SignUp({super.key});
+  @override
+  void dispose() {
+    _userNameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
 
-  // @override
-  // void dispose() {
-  //   _userNameController.dispose();
-  //   _emailController.dispose();
-  //   _passwordController.dispose();
-  //   _confirmPasswordController.dispose();
-  //   dispose();
-  // }
-  Future<void> signUpUser({
-    required String username,
-    required String email,
-    required String password,
-  }) async {
+  void signUserUp() async {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
     try {
-      final userAttributes = {
-        AuthUserAttributeKey.email: email,
-        // additional attributes as needed
-      };
-      final result = await Amplify.Auth.signUp(
-        username: username,
-        password: password,
-        options: SignUpOptions(
-          userAttributes: userAttributes,
-        ),
+      final credential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
       );
-      print("User creation succeeded");
-    } on AuthException catch (e) {
-      safePrint('Error signing up user: ${e.message}');
+
+      // pop the loading circle
+      if (mounted) {
+        Navigator.pop(context);
+      }
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const MyHomePage()));
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        print('The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        print('The account already exists for that email.');
+      }
+    } catch (e) {
+      print(e);
     }
   }
 
@@ -115,34 +135,7 @@ class SignUp extends StatelessWidget {
                         child: Column(
                           children: <Widget>[
                             // Mobile number field
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 25),
-                              child: TextFormField(
-                                controller: _userNameController,
-                                key: const ValueKey('Username'),
-                                decoration: InputDecoration(
-                                  enabledBorder: const OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.white),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.grey.shade300),
-                                  ),
-                                  fillColor: Colors.grey.shade200,
-                                  labelText: 'Username',
-                                  hintText: 'Enter your Username',
-                                ),
-                                keyboardType: TextInputType.text,
-                                validator: (value) {
-                                  if (value!.isEmpty) {
-                                    return 'Username is required';
-                                  }
-                                  return null;
-                                },
-                                // onSaved: (value) => _mobileNumber = value!,
-                              ),
-                            ),
+
                             const SizedBox(
                               height: 15,
                             ),
@@ -246,15 +239,7 @@ class SignUp extends StatelessWidget {
                             // Sign up button
                             ElevatedButton(
                               onPressed: () async {
-                                if (_signUpformKey.currentState!.validate()) {
-                                  _signUpformKey.currentState!.save();
-                                  // Process signup logic with `_mobileNumber` and `_password`
-                                  // Read the AuthServices instance
-                                  signUpUser(
-                                      username: _userNameController.text,
-                                      email: _emailController.text,
-                                      password: _passwordController.text);
-                                }
+                                signUserUp();
                               },
                               style: ElevatedButton.styleFrom(
                                 foregroundColor: Colors.white,

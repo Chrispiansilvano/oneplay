@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:oneplay/pages/auth/SignUp.dart';
 
@@ -11,9 +12,83 @@ class LogIn extends StatefulWidget {
 class _LogInState extends State<LogIn> {
   final _LoginformKey = GlobalKey<FormState>();
 
-  String _mobileNumber = '';
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
-  String _password = '';
+  void signUserIn() async {
+    // show loading circle
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+
+    // try sign in
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+      
+      // pop the loading circle
+      if (mounted) {
+        Navigator.pop(context);
+      }
+    } on FirebaseAuthException catch (e) {
+      // pop the loading circle
+      Navigator.pop(context);
+      // WRONG EMAIL
+      if (e.code == 'user-not-found') {
+        // show error to user
+        wrongEmailMessage();
+      }
+
+      // WRONG PASSWORD
+      else if (e.code == 'wrong-password') {
+        // show error to user
+        wrongPasswordMessage();
+      }
+    }
+  }
+
+  // wrong email message popup
+  void wrongEmailMessage() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const AlertDialog(
+          backgroundColor: Colors.deepPurple,
+          title: Center(
+            child: Text(
+              'Incorrect Email',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  // wrong password message popup
+  void wrongPasswordMessage() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const AlertDialog(
+          backgroundColor: Colors.deepPurple,
+          title: Center(
+            child: Text(
+              'Incorrect Password',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +168,8 @@ class _LogInState extends State<LogIn> {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 25),
                                   child: TextFormField(
-                                    key: const ValueKey('mobileNumber'),
+                                    controller: _emailController,
+                                    key: const ValueKey('email'),
                                     decoration: InputDecoration(
                                       enabledBorder: const OutlineInputBorder(
                                         borderSide:
@@ -104,17 +180,16 @@ class _LogInState extends State<LogIn> {
                                             color: Colors.grey.shade300),
                                       ),
                                       fillColor: Colors.grey.shade200,
-                                      labelText: 'Mobile Number',
-                                      hintText: 'Enter your mobile number',
+                                      labelText: 'Email',
+                                      hintText: 'Enter your email',
                                     ),
-                                    keyboardType: TextInputType.phone,
+                                    keyboardType: TextInputType.text,
                                     validator: (value) {
                                       if (value!.isEmpty) {
-                                        return 'Mobile number is required';
+                                        return 'email is required';
                                       }
                                       return null;
                                     },
-                                    onSaved: (value) => _mobileNumber = value!,
                                   ),
                                 ),
                                 const SizedBox(
@@ -125,6 +200,7 @@ class _LogInState extends State<LogIn> {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 25),
                                   child: TextFormField(
+                                    controller: _passwordController,
                                     key: const ValueKey('password'),
                                     decoration: InputDecoration(
                                       labelText: 'Password',
@@ -148,7 +224,6 @@ class _LogInState extends State<LogIn> {
                                       }
                                       return null;
                                     },
-                                    onSaved: (value) => _password = value!,
                                   ),
                                 ),
                                 const SizedBox(height: 15),
@@ -157,11 +232,7 @@ class _LogInState extends State<LogIn> {
                                 // Sign up button
                                 ElevatedButton(
                                   onPressed: () {
-                                    if (_LoginformKey.currentState!
-                                        .validate()) {
-                                      _LoginformKey.currentState!.save();
-                                      // Process signup logic with `_mobileNumber` and `_password`
-                                    }
+                                    signUserIn();
                                   },
                                   style: ElevatedButton.styleFrom(
                                     foregroundColor: Colors.white,
@@ -185,10 +256,11 @@ class _LogInState extends State<LogIn> {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => SignUp()));
+                                            builder: (context) =>
+                                                const SignUp()));
                                   },
                                   child: const Text(
-                                      'Already have an account? Login'),
+                                      'You do not have an account? Signup'),
                                 ),
                               ],
                             ),
