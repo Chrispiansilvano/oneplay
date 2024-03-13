@@ -1,27 +1,45 @@
-import "package:firebase_storage/firebase_storage.dart";
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
-import 'package:oneplay/components/StorageService/storage_service.dart';
+import 'package:oneplay/pages/MediaView/MediaPlayer.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:video_player/video_player.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class MediaPlayer extends StatefulWidget {
-  const MediaPlayer({super.key});
+class MediaPlayerTest extends StatefulWidget {
+  const MediaPlayerTest({super.key});
 
   @override
-  State<MediaPlayer> createState() => _MediaPlayerState();
+  State<MediaPlayerTest> createState() => _MediaPlayerTestState();
 }
 
-class _MediaPlayerState extends State<MediaPlayer> {
- 
+class _MediaPlayerTestState extends State<MediaPlayerTest> {
+  final FlickManager flickManager = FlickManager(
+    videoPlayerController: VideoPlayerController.networkUrl(
+      Uri.parse(
+        'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
+      ),
+    ),
+  );
+
+  final videoUrl = "https://youtu.be/iKsOcfrJKUI";
+
+  late YoutubePlayerController _controller;
+
   @override
   void initState() {
+    final videoId = YoutubePlayer.convertUrlToId(videoUrl);
+    _controller = YoutubePlayerController(
+      initialVideoId: videoId!,
+      flags: const YoutubePlayerFlags(
+        autoPlay: false,
+        mute: true,
+      ),
+    );
     super.initState();
-   
   }
+
   @override
   Widget build(BuildContext context) {
-    final Storage storage = Storage();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 57, 32, 58),
@@ -51,31 +69,33 @@ class _MediaPlayerState extends State<MediaPlayer> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            FutureBuilder(
-                future: storage.downloadURL('chanda.mp4'),
-                builder:
-                    (BuildContext context, AsyncSnapshot<String> snapshot) {
-                  if (snapshot.connectionState == ConnectionState.done &&
-                      snapshot.hasData) {
-                    return AspectRatio(
-                      aspectRatio: 16 / 9,
-                      child: FlickVideoPlayer(
-                          flickManager: FlickManager(
-                        videoPlayerController: VideoPlayerController.networkUrl(
-                          Uri.parse(
-                            snapshot.data!,
-                            // 'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
-                          ),
-                        ),
-                      )),
-                    );
-                  }
-                  if (snapshot.connectionState == ConnectionState.waiting ||
-                      !snapshot.hasData) {
-                    return const CircularProgressIndicator();
-                  }
-                  return Container();
-                }),
+            AspectRatio(
+              aspectRatio: 16 / 9,
+              // child: FlickVideoPlayer(flickManager: flickManager),
+              child: YoutubePlayer(
+                bottomActions: [
+                  const PlaybackSpeedButton(),
+                  CurrentPosition(),
+                  ProgressBar(
+                    isExpanded: true,
+                    colors: const ProgressBarColors(
+                        playedColor: Colors.amber,
+                        handleColor: Colors.amberAccent),
+                  )
+                ],
+                controller: _controller,
+                showVideoProgressIndicator: true,
+                progressIndicatorColor: Colors.amber,
+                progressColors: const ProgressBarColors(
+                  playedColor: Colors.amber,
+                  handleColor: Colors.amberAccent,
+                ),
+                onReady: () {
+                  debugPrint('Ready');
+                  // _controller.addListener(listener);
+                },
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -293,7 +313,7 @@ class _MediaPlayerState extends State<MediaPlayer> {
                       onTap: () {
                         PersistentNavBarNavigator.pushNewScreen(
                           context,
-                          screen: const MediaPlayer(),
+                          screen: MediaPlayer(),
                           withNavBar: true,
                           pageTransitionAnimation:
                               PageTransitionAnimation.cupertino,
@@ -399,7 +419,7 @@ class _MediaPlayerState extends State<MediaPlayer> {
                       onTap: () {
                         PersistentNavBarNavigator.pushNewScreen(
                           context,
-                          screen: const MediaPlayer(),
+                          screen: MediaPlayer(),
                           withNavBar: true,
                           pageTransitionAnimation:
                               PageTransitionAnimation.cupertino,
@@ -519,7 +539,7 @@ class _MediaPlayerState extends State<MediaPlayer> {
                       onTap: () {
                         PersistentNavBarNavigator.pushNewScreen(
                           context,
-                          screen: const MediaPlayer(),
+                          screen: MediaPlayer(),
                           withNavBar: true,
                           pageTransitionAnimation:
                               PageTransitionAnimation.cupertino,
@@ -625,7 +645,7 @@ class _MediaPlayerState extends State<MediaPlayer> {
                       onTap: () {
                         PersistentNavBarNavigator.pushNewScreen(
                           context,
-                          screen: const MediaPlayer(),
+                          screen: MediaPlayer(),
                           withNavBar: true,
                           pageTransitionAnimation:
                               PageTransitionAnimation.cupertino,

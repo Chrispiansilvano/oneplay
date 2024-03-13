@@ -39,7 +39,10 @@ class _LogInState extends State<LogIn> {
       }
     } on FirebaseAuthException catch (e) {
       // pop the loading circle
-      Navigator.pop(context);
+      if(mounted){
+        Navigator.pop(context);
+      }
+      
       // WRONG EMAIL
       if (e.code == 'user-not-found') {
         // show error to user
