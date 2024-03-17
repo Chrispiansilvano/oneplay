@@ -1,13 +1,60 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class Profile extends StatelessWidget {
-  Profile({super.key});
+class Profile extends StatefulWidget {
+  const Profile({super.key});
+
+  @override
+  State<Profile> createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
   final user = FirebaseAuth.instance.currentUser!;
 
   // sign user out method
   void signUserOut() {
     FirebaseAuth.instance.signOut();
+  }
+
+  String _username = '';
+  String _email = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _getCurrentUser(); // Fetch user info on page load
+  }
+
+  // void _getCurrentUser() async {
+  //   final user = FirebaseAuth.instance.currentUser;
+  //   if (user != null) {
+  //     setState(() {
+  //       _username = user.displayName??
+  //           ''; // Use null-ish coalescing for optional display name
+  //       _email = user.email!; // Email is guaranteed to be non-null
+  //     });
+  //   }
+  // }
+  void _getCurrentUser() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      final uid = user.uid;
+
+      // Fetch user document from Firestore based on UID
+      final docSnapshot =
+          await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+      if (docSnapshot.exists) {
+        final userData = docSnapshot.data();
+        setState(() {
+          _username = userData?['username'] ??
+              ''; // Use null-ish coalescing for both levels
+          _email = user.email!;
+        });
+      } else {
+        // Handle case where user document is not found
+      }
+    }
   }
 
   @override
@@ -62,36 +109,78 @@ class Profile extends StatelessWidget {
                       borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(15),
                           bottomRight: Radius.circular(15))),
-                  child: Stack(
-                    clipBehavior: Clip.none,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Positioned(
-                        bottom: -70,
-                        left: 8,
-                        right: 8,
-                        top: 20,
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            color: Colors.blue,
-                            shape: BoxShape.circle,
-                          ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Container(
+                        width: 50,
+                        height: 50,
+                        decoration: const BoxDecoration(
+                          color: Colors.blue,
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Center(child: Text('OP')),
+                      ),
+                      const SizedBox(
+                        width: 15,
+                      ),
+                      Container(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              child: Text(
+                                _username,
+                                style: const TextStyle(
+                                    color: Colors.white, fontSize: 20),
+                              ),
+                            ),
+                            Container(
+                              child: Text(
+                                _email,
+                                style: const TextStyle(
+                                    color: Colors.white, fontSize: 15),
+                              ),
+                            ),
+                          ],
                         ),
                       )
                     ],
                   ),
+                  // child: Stack(
+                  //   clipBehavior: Clip.none,
+                  //   children: [
+                  //     Positioned(
+                  //         bottom: -70,
+                  //         left: 8,
+                  //         right: 8,
+                  //         top: 20,
+                  //         child: Container(
+                  //           decoration: const BoxDecoration(
+                  //             color: Colors.blue,
+                  //             shape: BoxShape.circle,
+                  //           ),
+                  //           child: Center(
+                  //             child: Text(
+                  //               // _email,
+                  //               _username,
+                  //               style: const TextStyle(color: Colors.white),
+                  //             ),
+                  //           ),
+                  //         ))
+                  //   ],
+                  // ),
                 ),
                 GestureDetector(
-                  onTap: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //       builder: (context) => const OrderConversionScreen()),
-                    // );
-                  },
+                  onTap: () {},
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.06,
                     width: MediaQuery.of(context).size.width * 0.94,
-                    margin: const EdgeInsets.fromLTRB(0, 50, 0, 0),
+                    margin: const EdgeInsets.fromLTRB(0, 5, 0, 0),
                     decoration: const BoxDecoration(
                         color: Color.fromARGB(255, 57, 32, 58),
                         borderRadius: BorderRadius.all(

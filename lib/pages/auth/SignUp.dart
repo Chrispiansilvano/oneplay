@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:oneplay/main.dart';
@@ -30,7 +31,37 @@ class _SignUpState extends State<SignUp> {
     super.dispose();
   }
 
-  void signUserUp() async {
+  // void signUserUp(String username, String email, String password) async {
+  //   try {
+  //     final credential =
+  //         await FirebaseAuth.instance.createUserWithEmailAndPassword(
+  //       email: _emailController.text,
+  //       password: _passwordController.text,
+  //     );
+
+  //     // pop the loading circle
+
+  //     final uid = credential.user!.uid;
+  //     await FirebaseFirestore.instance.collection('AppUsers').doc(uid).set({
+  //       'uid': uid,
+  //       'usermname': _userNameController.text,
+  //       'email': _emailController.text,
+  //     });
+
+  //     Navigator.pushReplacement(
+  //         context, MaterialPageRoute(builder: (context) => const MyHomePage()));
+  //   } on FirebaseAuthException catch (e) {
+  //     if (e.code == 'weak-password') {
+  //       print('The password provided is too weak.');
+  //     } else if (e.code == 'email-already-in-use') {
+  //       print('The account already exists for that email.');
+  //     }
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
+
+  Future<void> _registerUser() async {
     showDialog(
       context: context,
       builder: (context) {
@@ -39,27 +70,43 @@ class _SignUpState extends State<SignUp> {
         );
       },
     );
+
     try {
-      final credential =
+      final username = _userNameController.text;
+      final email = _emailController.text;
+      final password = _passwordController.text;
+
+      // Create user with Firebase Authentication
+      final userCredential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: _emailController.text,
-        password: _passwordController.text,
+        email: email,
+        password: password,
       );
 
-      // pop the loading circle
+      // Extract the user ID
+      final uid = userCredential.user!.uid;
+
+      // Add user details to Firestore
+      await FirebaseFirestore.instance.collection('Users').doc(uid).set({
+        'uid': uid,
+        'email': email,
+        'displayName': username,
+      });
       if (mounted) {
         Navigator.pop(context);
       }
+
+      // Navigate to home page (replace with your actual home page)
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => const MyHomePage()));
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
-      } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
-      }
-    } catch (e) {
-      print(e);
+      // Handle signup errors (e.g., show a snackbar)
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(e.message!),
+          backgroundColor: Colors.redAccent,
+        ),
+      );
     }
   }
 
@@ -135,9 +182,40 @@ class _SignUpState extends State<SignUp> {
                         child: Column(
                           children: <Widget>[
                             // Mobile number field
-
                             const SizedBox(
                               height: 15,
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 25),
+                              child: TextFormField(
+                                controller: _userNameController,
+                                key: const ValueKey('Username'),
+                                decoration: InputDecoration(
+                                  isDense: true,
+                                  enabledBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.white),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.grey.shade300),
+                                  ),
+                                  fillColor: Colors.grey.shade200,
+                                  labelText: 'Username',
+                                  hintText: 'Enter your username',
+                                ),
+                                keyboardType: TextInputType.text,
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'username is required';
+                                  }
+                                  return null;
+                                },
+                                // onSaved: (value) => _mobileNumber = value!,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 5,
                             ),
                             Padding(
                               padding:
@@ -146,6 +224,7 @@ class _SignUpState extends State<SignUp> {
                                 controller: _emailController,
                                 key: const ValueKey('Email'),
                                 decoration: InputDecoration(
+                                  isDense: true,
                                   enabledBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(color: Colors.white),
                                   ),
@@ -168,7 +247,7 @@ class _SignUpState extends State<SignUp> {
                               ),
                             ),
                             const SizedBox(
-                              height: 15,
+                              height: 5,
                             ),
                             // Password field
                             Padding(
@@ -178,6 +257,7 @@ class _SignUpState extends State<SignUp> {
                                 controller: _passwordController,
                                 key: const ValueKey('password'),
                                 decoration: InputDecoration(
+                                  isDense: true,
                                   labelText: 'Password',
                                   hintText: 'Enter your password',
                                   enabledBorder: const OutlineInputBorder(
@@ -201,7 +281,7 @@ class _SignUpState extends State<SignUp> {
                                 // onSaved: (value) => password = value!,
                               ),
                             ),
-                            const SizedBox(height: 15),
+                            const SizedBox(height: 5),
                             // Confirm password field
                             Padding(
                               padding:
@@ -210,6 +290,7 @@ class _SignUpState extends State<SignUp> {
                                 controller: _confirmPasswordController,
                                 key: const ValueKey('confirmPassword'),
                                 decoration: InputDecoration(
+                                  isDense: true,
                                   labelText: 'Confirm Password',
                                   hintText: 'Confirm your password',
                                   enabledBorder: const OutlineInputBorder(
@@ -239,7 +320,7 @@ class _SignUpState extends State<SignUp> {
                             // Sign up button
                             ElevatedButton(
                               onPressed: () async {
-                                signUserUp();
+                                _registerUser();
                               },
                               style: ElevatedButton.styleFrom(
                                 foregroundColor: Colors.white,

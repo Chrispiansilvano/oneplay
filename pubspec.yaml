@@ -32,7 +32,9 @@ dependencies:
   amplify_flutter: ^1.0.1
   carousel_slider: ^4.2.1
   chewie: 1.5.0
+  cloud_firestore: ^4.15.9
   cupertino_icons: ^1.0.2
+  firebase_analytics: ^10.8.10
   firebase_auth: ^4.17.7
   firebase_core: ^2.24.2
   firebase_storage: ^11.6.9
@@ -42,6 +44,8 @@ dependencies:
   flutter_inappwebview: ^6.0.0
   flutter_riverpod: ^2.4.10
   flutter_swiper_plus: ^2.0.4
+  fluttertoast: ^8.2.4
+  google_sign_in: ^6.2.1
   persistent_bottom_nav_bar: ^5.0.2
   smooth_page_indicator: ^1.1.0
   video_player: ^2.3.0
