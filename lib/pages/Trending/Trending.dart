@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oneplay/Widgets/Carousel.dart';
+import 'package:oneplay/Widgets/MovieQuery.dart';
 import 'package:oneplay/components/StorageService/storage_service.dart';
 import 'package:oneplay/pages/MediaView/MediaPlayer.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
@@ -39,6 +40,10 @@ class _TrendingState extends State<Trending> {
                   ),
                 ),
               ),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
+                child: MovieList(tag: "Trending Now"),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -47,13 +52,13 @@ class _TrendingState extends State<Trending> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          PersistentNavBarNavigator.pushNewScreen(
-                            context,
-                            screen: const MediaPlayer(),
-                            withNavBar: true,
-                            pageTransitionAnimation:
-                                PageTransitionAnimation.cupertino,
-                          );
+                          // PersistentNavBarNavigator.pushNewScreen(
+                          //   context,
+                          //   screen: const MediaPlayer(id: ,),
+                          //   withNavBar: true,
+                          //   pageTransitionAnimation:
+                          //       PageTransitionAnimation.cupertino,
+                          // );
                         },
                         child: FutureBuilder(
                             future: storage.downloadURL('wolfie.jpg'),

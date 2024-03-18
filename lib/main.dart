@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
     const HomePage(), // Your Home page with TabBarView
     Reels(), // Your Explore page
     const Tv(), // Your Settings page
-     Profile(),
+    const Profile(),
     // SignUp(),
     // const LogIn(),
   ];

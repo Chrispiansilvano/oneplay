@@ -31,35 +31,6 @@ class _SignUpState extends State<SignUp> {
     super.dispose();
   }
 
-  // void signUserUp(String username, String email, String password) async {
-  //   try {
-  //     final credential =
-  //         await FirebaseAuth.instance.createUserWithEmailAndPassword(
-  //       email: _emailController.text,
-  //       password: _passwordController.text,
-  //     );
-
-  //     // pop the loading circle
-
-  //     final uid = credential.user!.uid;
-  //     await FirebaseFirestore.instance.collection('AppUsers').doc(uid).set({
-  //       'uid': uid,
-  //       'usermname': _userNameController.text,
-  //       'email': _emailController.text,
-  //     });
-
-  //     Navigator.pushReplacement(
-  //         context, MaterialPageRoute(builder: (context) => const MyHomePage()));
-  //   } on FirebaseAuthException catch (e) {
-  //     if (e.code == 'weak-password') {
-  //       print('The password provided is too weak.');
-  //     } else if (e.code == 'email-already-in-use') {
-  //       print('The account already exists for that email.');
-  //     }
-  //   } catch (e) {
-  //     print(e);
-  //   }
-  // }
 
   Future<void> _registerUser() async {
     showDialog(
@@ -90,7 +61,7 @@ class _SignUpState extends State<SignUp> {
       await FirebaseFirestore.instance.collection('Users').doc(uid).set({
         'uid': uid,
         'email': email,
-        'displayName': username,
+        'username': username,
       });
       if (mounted) {
         Navigator.pop(context);

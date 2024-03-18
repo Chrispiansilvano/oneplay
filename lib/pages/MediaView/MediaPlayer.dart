@@ -6,7 +6,9 @@ import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:video_player/video_player.dart';
 
 class MediaPlayer extends StatefulWidget {
-  const MediaPlayer({super.key});
+  final String id; // Tag to filter by (e.g., "Trending Now")
+
+  const MediaPlayer({super.key, required this.id});
 
   @override
   State<MediaPlayer> createState() => _MediaPlayerState();
@@ -291,13 +293,13 @@ class _MediaPlayerState extends State<MediaPlayer> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        PersistentNavBarNavigator.pushNewScreen(
-                          context,
-                          screen: const MediaPlayer(),
-                          withNavBar: true,
-                          pageTransitionAnimation:
-                              PageTransitionAnimation.cupertino,
-                        );
+                        // PersistentNavBarNavigator.pushNewScreen(
+                        //   context,
+                        //   screen: const MediaPlayer(),
+                        //   withNavBar: true,
+                        //   pageTransitionAnimation:
+                        //       PageTransitionAnimation.cupertino,
+                        // );
                       },
                       child: SizedBox(
                         width: 105,
@@ -397,13 +399,13 @@ class _MediaPlayerState extends State<MediaPlayer> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        PersistentNavBarNavigator.pushNewScreen(
-                          context,
-                          screen: const MediaPlayer(),
-                          withNavBar: true,
-                          pageTransitionAnimation:
-                              PageTransitionAnimation.cupertino,
-                        );
+                        // PersistentNavBarNavigator.pushNewScreen(
+                        //   context,
+                        //   screen: const MediaPlayer(),
+                        //   withNavBar: true,
+                        //   pageTransitionAnimation:
+                        //       PageTransitionAnimation.cupertino,
+                        // );
                       },
                       child: SizedBox(
                         width: 105,
@@ -517,13 +519,13 @@ class _MediaPlayerState extends State<MediaPlayer> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        PersistentNavBarNavigator.pushNewScreen(
-                          context,
-                          screen: const MediaPlayer(),
-                          withNavBar: true,
-                          pageTransitionAnimation:
-                              PageTransitionAnimation.cupertino,
-                        );
+                        // PersistentNavBarNavigator.pushNewScreen(
+                        //   context,
+                        //   screen: const MediaPlayer(),
+                        //   withNavBar: true,
+                        //   pageTransitionAnimation:
+                        //       PageTransitionAnimation.cupertino,
+                        // );
                       },
                       child: SizedBox(
                         width: 105,
@@ -623,13 +625,13 @@ class _MediaPlayerState extends State<MediaPlayer> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        PersistentNavBarNavigator.pushNewScreen(
-                          context,
-                          screen: const MediaPlayer(),
-                          withNavBar: true,
-                          pageTransitionAnimation:
-                              PageTransitionAnimation.cupertino,
-                        );
+                        // PersistentNavBarNavigator.pushNewScreen(
+                        //   context,
+                        //   screen: const MediaPlayer(),
+                        //   withNavBar: true,
+                        //   pageTransitionAnimation:
+                        //       PageTransitionAnimation.cupertino,
+                        // );
                       },
                       child: SizedBox(
                         width: 105,
