@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oneplay/Widgets/Carousel.dart';
-import 'package:oneplay/Widgets/MovieQuery.dart';
+import 'package:oneplay/Widgets/utilities/MovieQuery.dart';
 import 'package:oneplay/components/StorageService/storage_service.dart';
 import 'package:oneplay/pages/MediaView/MediaPlayer.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
