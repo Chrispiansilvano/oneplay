@@ -110,38 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: const Color.fromARGB(255, 57, 32, 58),
       popAllScreensOnTapOfSelectedTab: true,
     );
-    // return Scaffold(
 
-    //   body: _pages[_selectedIndex],
-    //   bottomNavigationBar: BottomNavigationBar(
-    //     // fixedColor: Colors.white,
-    //     unselectedItemColor: const Color.fromARGB(255, 47, 119, 126),
-    //     selectedItemColor: Colors.white,
-    //     type: BottomNavigationBarType.fixed,
-    //     backgroundColor: const Color.fromARGB(255, 57, 32, 58),
-    //     items: const [
-    //       BottomNavigationBarItem(
-    //         icon: Icon(Icons.home),
-    //         label: 'Home',
-    //       ),
-    //       BottomNavigationBarItem(
-    //         icon: Icon(Icons.movie),
-    //         label: 'Reels',
-    //       ), 020
-
-    //       BottomNavigationBarItem(
-    //         icon: Icon(Icons.live_tv),
-    //         label: 'Live Tv',
-    //       ),
-    //       BottomNavigationBarItem(
-    //         icon: Icon(Icons.account_circle),
-    //         label: 'Profile',
-    //       ),
-    //     ],
-    //     currentIndex: _selectedIndex,
-    //     onTap: _onItemTapped,
-    //   ),
-    // );
   }
 
   void _onItemTapped(int index) {

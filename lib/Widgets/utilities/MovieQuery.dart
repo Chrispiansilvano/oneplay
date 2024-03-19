@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:oneplay/pages/MediaView/MediaPlayer.dart';
 import 'package:oneplay/pages/MediaView/TrailerPage.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
@@ -35,12 +34,14 @@ class _MovieListState extends State<MovieList> {
       stream: moviesStream!,
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          print('Error: ${snapshot.error}');
+          // print('Error: ${snapshot.error}');
           return Text('Error: ${snapshot.error}');
         }
 
         if (!snapshot.hasData) {
-          return const CircularProgressIndicator();
+          return const CircularProgressIndicator(
+            color: Color.fromARGB(255, 255, 0, 0),
+          );
         }
 
         final movies = snapshot.data!.docs;
@@ -76,16 +77,18 @@ class _MovieListState extends State<MovieList> {
                   final downloadUrl = snapshot.data!;
                   return GestureDetector(
                     // onTap: () => MediaPlayer(id: id,),
-                    
+
                     onTap: () {
-                          PersistentNavBarNavigator.pushNewScreen(
-                            context,
-                            screen: TrailerPage(id: id,),
-                            withNavBar: true,
-                            pageTransitionAnimation:
-                                PageTransitionAnimation.cupertino,
-                          );
-                        },
+                      PersistentNavBarNavigator.pushNewScreen(
+                        context,
+                        screen: TrailerPage(
+                          id: id,
+                        ),
+                        withNavBar: true,
+                        pageTransitionAnimation:
+                            PageTransitionAnimation.cupertino,
+                      );
+                    },
                     child: Container(
                       // Adjusted from Container for flexibility
                       decoration: BoxDecoration(
@@ -105,8 +108,16 @@ class _MovieListState extends State<MovieList> {
                               loadingBuilder:
                                   (context, child, loadingProgress) {
                                 if (loadingProgress == null) return child;
-                                return const Center(
-                                    child: CircularProgressIndicator());
+                                return  Center(
+                                  child:  Container(
+                    height: 170,
+                    width: 200,
+                    decoration: const BoxDecoration(color: Color.fromARGB(170, 56, 31, 56)),
+                  ),
+                                  // CircularProgressIndicator(
+                                  //   color: Colors.green,
+                                  // ),
+                                );
                               },
                               errorBuilder: (context, error, trace) =>
                                   const Center(child: Icon(Icons.error)),
@@ -123,7 +134,15 @@ class _MovieListState extends State<MovieList> {
                 } else if (snapshot.hasError) {
                   return Text('Error loading image: ${snapshot.error}');
                 } else {
-                  return const CircularProgressIndicator();
+                  return Container(
+                    height: 120,
+                    width: 200,
+                    decoration: const BoxDecoration(
+                        color: Color.fromARGB(255, 57, 32, 58)),
+                  );
+                  // CircularProgressIndicator(
+                  //   color: Colors.yellow,
+                  // );
                 }
               },
             );

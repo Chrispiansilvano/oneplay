@@ -363,7 +363,7 @@ class _MediaPlayerState extends State<TrailerPage> {
                         ),
                       ),
                       Container(
-                        padding: const EdgeInsets.fromLTRB(15, 10, 0, 10),
+                        padding: const EdgeInsets.fromLTRB(15, 10, 0, 3),
                         child: const Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
@@ -377,10 +377,10 @@ class _MediaPlayerState extends State<TrailerPage> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                        padding: const EdgeInsets.fromLTRB(15, 0, 5, 0),
                         child: Container(
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Flexible(
                                 flex: 1,
@@ -388,7 +388,7 @@ class _MediaPlayerState extends State<TrailerPage> {
                                   // Wrap for better overflow handling
                                   children: cast
                                       .map((actor) => Text(
-                                            '$actor ',
+                                            '$actor  ',
                                             style: const TextStyle(
                                               fontSize: 15,
                                               color: Color.fromARGB(
