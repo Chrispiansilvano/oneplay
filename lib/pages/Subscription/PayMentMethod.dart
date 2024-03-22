@@ -69,13 +69,13 @@ class PayMentMethod extends StatelessWidget {
                           height: MediaQuery.of(context).size.height * 0.15,
                           width: MediaQuery.of(context).size.width * 0.35,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(25),
                             border: Border.all(
-                                color: Colors
-                                    .grey), // Optional border (adjust as needed)
+                                color: const Color.fromARGB(255, 158, 158,
+                                    158)), // Optional border (adjust as needed)
                           ),
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(6),
+                            borderRadius: BorderRadius.circular(25),
                             child: FittedBox(
                               fit: BoxFit.contain, // Adjust fit as needed
                               child: Image.asset('images/tigopesalogo.png'),
@@ -97,13 +97,13 @@ class PayMentMethod extends StatelessWidget {
                           height: MediaQuery.of(context).size.height * 0.15,
                           width: MediaQuery.of(context).size.width * 0.35,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(
-                                color: Colors
-                                    .grey), // Optional border (adjust as needed)
+                            borderRadius: BorderRadius.circular(25),
+                            // border: Border.all(
+                            //     color: Colors
+                            //         .grey), // Optional border (adjust as needed)
                           ),
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(6),
+                            borderRadius: BorderRadius.circular(25),
                             child: FittedBox(
                               fit: BoxFit.cover, // Adjust fit as needed
                               child: Image.asset('images/mpesalogo.png'),
@@ -133,13 +133,13 @@ class PayMentMethod extends StatelessWidget {
                           height: MediaQuery.of(context).size.height * 0.15,
                           width: MediaQuery.of(context).size.width * 0.35,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(25),
                             border: Border.all(
                                 color: Colors
                                     .grey), // Optional border (adjust as needed)
                           ),
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(6),
+                            borderRadius: BorderRadius.circular(25),
                             child: FittedBox(
                               fit: BoxFit.contain, // Adjust fit as needed
                               child: Image.asset('images/halopesalogo.png'),
@@ -161,13 +161,13 @@ class PayMentMethod extends StatelessWidget {
                           height: MediaQuery.of(context).size.height * 0.15,
                           width: MediaQuery.of(context).size.width * 0.35,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(25),
                             border: Border.all(
                                 color: Colors
                                     .grey), // Optional border (adjust as needed)
                           ),
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(6),
+                            borderRadius: BorderRadius.circular(25),
                             child: FittedBox(
                               fit: BoxFit.cover, // Adjust fit as needed
                               child: Image.asset('images/airtelmoneylogo.png'),
