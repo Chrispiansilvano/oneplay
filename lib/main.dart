@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:oneplay/Widgets/SplashScreen.dart';
 import 'package:oneplay/firebase_options.dart';
 import 'package:oneplay/pages/Comedy/Comedy.dart';
 import 'package:oneplay/pages/Michezo/Michezo.dart';
@@ -10,7 +11,6 @@ import 'package:oneplay/pages/Reels/Reels.dart';
 import 'package:oneplay/pages/Series/Series.dart';
 import 'package:oneplay/pages/Trending/Trending.dart';
 import 'package:oneplay/pages/Tv/Tv.dart';
-import 'package:oneplay/pages/auth/AuthCheck.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 void main() async {
@@ -42,10 +42,11 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         colorScheme:
             ColorScheme.fromSwatch(primarySwatch: Colors.blue).copyWith(
-          background: const Color.fromARGB(255, 76, 17, 86),
+          background: const Color.fromARGB(255, 7, 23, 33),
         ),
       ),
-      home: const AuthCheck(),
+      home: const Splash(),
+      // home: const AuthCheck(),
       // home: const MyHomePage(),
     );
   }
@@ -76,25 +77,25 @@ class _MyHomePageState extends State<MyHomePage> {
         icon: const Icon(Icons.home),
         title: ("Home"),
         activeColorPrimary: Colors.white,
-        inactiveColorPrimary: const Color.fromARGB(255, 47, 119, 126),
+        inactiveColorPrimary: const Color.fromARGB(255, 134, 135, 135),
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(Icons.movie),
         title: ("Reels"),
         activeColorPrimary: Colors.white,
-        inactiveColorPrimary: const Color.fromARGB(255, 47, 119, 126),
+        inactiveColorPrimary: const Color.fromARGB(255, 134, 135, 135),
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(Icons.live_tv),
         title: ("Live Tv"),
         activeColorPrimary: Colors.white,
-        inactiveColorPrimary: const Color.fromARGB(255, 47, 119, 126),
+        inactiveColorPrimary: const Color.fromARGB(255, 134, 135, 135),
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(Icons.account_circle),
         title: ("Profile"),
         activeColorPrimary: Colors.white,
-        inactiveColorPrimary: const Color.fromARGB(255, 47, 119, 126),
+        inactiveColorPrimary: const Color.fromARGB(255, 134, 135, 135),
       ),
     ];
   }
@@ -107,10 +108,9 @@ class _MyHomePageState extends State<MyHomePage> {
       items: _navBarsItems(),
       controller: _controller,
       navBarStyle: NavBarStyle.simple,
-      backgroundColor: const Color.fromARGB(255, 57, 32, 58),
+      backgroundColor: const Color.fromARGB(255, 4, 21, 48),
       popAllScreensOnTapOfSelectedTab: true,
     );
-
   }
 
   void _onItemTapped(int index) {
@@ -129,7 +129,8 @@ class HomePage extends StatelessWidget {
       length: 5, // Number of tabs
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 57, 32, 58),
+          // backgroundColor: const Color.fromARGB(255, 7, 39, 59),
+          backgroundColor: const Color.fromARGB(255, 20, 62, 87),
           leading: Container(
             // padding: const EdgeInsets.all(5),
             padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
@@ -159,10 +160,12 @@ class HomePage extends StatelessWidget {
               ),
             )
           ],
+          elevation: 0.0,
           bottom: const TabBar(
+            dividerColor: Colors.transparent,
             labelPadding: EdgeInsets.fromLTRB(0, 0, 5, 0),
             labelColor: Colors.white,
-            unselectedLabelColor: Color.fromARGB(255, 47, 119, 126),
+            unselectedLabelColor: Color.fromARGB(255, 255, 255, 255),
             indicatorColor: Colors.white,
             tabs: [
               Tab(text: 'Trending'),
@@ -173,22 +176,28 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-        body: const TabBarView(
-          children: [
-            // Your content for Trending
-            Trending(),
-            // Your content for Movies
-            Movies(),
-            // Your content for Series
-            Series(),
-            Michezo(),
-            Comedy()
-          ],
+        body: Container(
+          // height: MediaQuery.of(context).size.height,
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment
+                  .topCenter, // Adjust as desired (top left by default)
+              end: Alignment
+                  .bottomCenter, // Adjust as desired (bottom right by default)s
+              colors: [
+                Color.fromARGB(255, 20, 62, 87),
+                Color.fromARGB(255, 15, 44, 61),
+                Color.fromARGB(255, 13, 37, 52),
+                Color.fromARGB(255, 10, 31, 44),
+                Color.fromARGB(255, 7, 23, 33),
+              ],
+            ),
+          ),
+          child: const TabBarView(
+            children: [Trending(), Movies(), Series(), Michezo(), Comedy()],
+          ),
         ),
       ),
     );
   }
 }
-
-// Implement ExplorePage and SettingsPage similarly with their content
-

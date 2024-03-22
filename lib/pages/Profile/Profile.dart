@@ -61,7 +61,7 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 57, 32, 58),
+          backgroundColor: const Color.fromARGB(255, 2, 30, 48),
           // leading: Container(
           //   // padding: const EdgeInsets.all(5),
           //   padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
@@ -71,16 +71,16 @@ class _ProfileState extends State<Profile> {
           //     // height: 60,
           //   ),
           // ),
-          title: Title(
-            color: const Color.fromARGB(255, 38, 174, 42),
-            child: const Text(
-              'My Oneplay',
-              style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600),
-            ),
-          ),
+          // title: Title(
+          //   color: const Color.fromARGB(255, 38, 174, 42),
+          //   child: const Text(
+          //     'My Oneplay',
+          //     style: TextStyle(
+          //         fontSize: 25,
+          //         color: Colors.white,
+          //         fontWeight: FontWeight.w600),
+          //   ),
+          // ),
           actions: const [
             Padding(
               padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
@@ -102,14 +102,15 @@ class _ProfileState extends State<Profile> {
               children: [
                 Container(
                   margin: const EdgeInsets.fromLTRB(0, 0, 0, 40),
-                  height: MediaQuery.of(context).size.height * 0.15,
+                  height: MediaQuery.of(context).size.height * 0.12,
                   decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 57, 32, 58),
-                      // color: Colors.black45,
+                      color: Color.fromARGB(255, 2, 30, 48),
+                      // color: Colors.yellow,
                       borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(15),
                           bottomRight: Radius.circular(15))),
                   child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       const SizedBox(
@@ -129,7 +130,7 @@ class _ProfileState extends State<Profile> {
                       ),
                       Container(
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
@@ -151,29 +152,6 @@ class _ProfileState extends State<Profile> {
                       )
                     ],
                   ),
-                  // child: Stack(
-                  //   clipBehavior: Clip.none,
-                  //   children: [
-                  //     Positioned(
-                  //         bottom: -70,
-                  //         left: 8,
-                  //         right: 8,
-                  //         top: 20,
-                  //         child: Container(
-                  //           decoration: const BoxDecoration(
-                  //             color: Colors.blue,
-                  //             shape: BoxShape.circle,
-                  //           ),
-                  //           child: Center(
-                  //             child: Text(
-                  //               // _email,
-                  //               _username,
-                  //               style: const TextStyle(color: Colors.white),
-                  //             ),
-                  //           ),
-                  //         ))
-                  //   ],
-                  // ),
                 ),
                 GestureDetector(
                   onTap: () {},

@@ -31,7 +31,6 @@ class _SignUpState extends State<SignUp> {
     super.dispose();
   }
 
-
   Future<void> _registerUser() async {
     showDialog(
       context: context,
