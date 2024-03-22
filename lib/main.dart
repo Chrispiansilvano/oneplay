@@ -74,29 +74,29 @@ class _MyHomePageState extends State<MyHomePage> {
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: const Icon(Icons.home),
-        title: ("Home"),
-        activeColorPrimary: Colors.white,
-        inactiveColorPrimary: const Color.fromARGB(255, 134, 135, 135),
-      ),
+          icon: const Icon(Icons.home),
+          title: ("Home"),
+          activeColorPrimary: Colors.white,
+          inactiveColorPrimary: const Color.fromARGB(255, 134, 135, 135),
+          activeColorSecondary: const Color.fromARGB(255, 126, 196, 236)),
       PersistentBottomNavBarItem(
-        icon: const Icon(Icons.movie),
-        title: ("Reels"),
-        activeColorPrimary: Colors.white,
-        inactiveColorPrimary: const Color.fromARGB(255, 134, 135, 135),
-      ),
+          icon: const Icon(Icons.movie),
+          title: ("Reels"),
+          activeColorPrimary: Colors.white,
+          inactiveColorPrimary: const Color.fromARGB(255, 134, 135, 135),
+          activeColorSecondary: const Color.fromARGB(255, 126, 196, 236)),
       PersistentBottomNavBarItem(
-        icon: const Icon(Icons.live_tv),
-        title: ("Live Tv"),
-        activeColorPrimary: Colors.white,
-        inactiveColorPrimary: const Color.fromARGB(255, 134, 135, 135),
-      ),
+          icon: const Icon(Icons.live_tv),
+          title: ("Live Tv"),
+          activeColorPrimary: Colors.white,
+          inactiveColorPrimary: const Color.fromARGB(255, 134, 135, 135),
+          activeColorSecondary: const Color.fromARGB(255, 126, 196, 236)),
       PersistentBottomNavBarItem(
-        icon: const Icon(Icons.account_circle),
-        title: ("Profile"),
-        activeColorPrimary: Colors.white,
-        inactiveColorPrimary: const Color.fromARGB(255, 134, 135, 135),
-      ),
+          icon: const Icon(Icons.account_circle),
+          title: ("Profile"),
+          activeColorPrimary: Colors.white,
+          inactiveColorPrimary: const Color.fromARGB(255, 134, 135, 135),
+          activeColorSecondary: const Color.fromARGB(255, 126, 196, 236)),
     ];
   }
 
@@ -164,9 +164,9 @@ class HomePage extends StatelessWidget {
           bottom: const TabBar(
             dividerColor: Colors.transparent,
             labelPadding: EdgeInsets.fromLTRB(0, 0, 5, 0),
-            labelColor: Colors.white,
+            labelColor: Color.fromARGB(255, 126, 196, 236),
             unselectedLabelColor: Color.fromARGB(255, 255, 255, 255),
-            indicatorColor: Colors.white,
+            indicatorColor: Color.fromARGB(255, 126, 196, 236),
             tabs: [
               Tab(text: 'Trending'),
               Tab(text: 'Movies'),

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:oneplay/pages/Subscription/SubWelcome.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -160,7 +161,7 @@ class _ProfileState extends State<Profile> {
                     width: MediaQuery.of(context).size.width * 0.94,
                     margin: const EdgeInsets.fromLTRB(0, 5, 0, 0),
                     decoration: const BoxDecoration(
-                        color: Color.fromARGB(255, 57, 32, 58),
+                        color: Color.fromARGB(255, 47, 119, 126),
                         borderRadius: BorderRadius.all(
                           Radius.circular(10),
                         )),
@@ -205,12 +206,70 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                 ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SubWelcome()),
+                    );
+                  },
+                  child: Container(
+                    height: MediaQuery.of(context).size.height * 0.06,
+                    width: MediaQuery.of(context).size.width * 0.94,
+                    margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                    decoration: const BoxDecoration(
+                        color: Color.fromARGB(255, 47, 119, 126),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        )),
+                    child: const Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(25, 0, 0, 0),
+                          child: IconTheme(
+                            data: IconThemeData(
+                                // weight: 100,
+                                ),
+                            child: Icon(
+                              Icons.settings,
+                              color: Colors.white,
+                              size: 20,
+                              // weight: 20,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(50, 0, 0, 0),
+                          child: Text(
+                            "Subscription",
+                            style: TextStyle(fontSize: 15, color: Colors.white),
+                          ),
+                        ),
+                        // Padding(
+                        //   padding: EdgeInsets.fromLTRB(85, 0, 0, 0),
+                        //   child: IconTheme(
+                        //     data: IconThemeData(
+
+                        //         ),
+                        //     child: Icon(
+                        //       Icons.chevron_right,
+                        //       color: Colors.white,
+                        //       size: 20,
+
+                        //     ),
+                        //   ),
+                        // ),
+                      ],
+                    ),
+                  ),
+                ),
                 Container(
                   height: MediaQuery.of(context).size.height * 0.06,
                   width: MediaQuery.of(context).size.width * 0.94,
                   margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
                   decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 57, 32, 58),
+                      color: Color.fromARGB(255, 47, 119, 126),
                       borderRadius: BorderRadius.all(
                         Radius.circular(10),
                       )),
@@ -233,7 +292,7 @@ class _ProfileState extends State<Profile> {
                       Padding(
                         padding: EdgeInsets.fromLTRB(50, 0, 0, 0),
                         child: Text(
-                          "Notification",
+                          "Notifications",
                           style: TextStyle(fontSize: 15, color: Colors.white),
                         ),
                       ),
@@ -262,7 +321,7 @@ class _ProfileState extends State<Profile> {
                   width: MediaQuery.of(context).size.width * 0.94,
                   margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
                   decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 57, 32, 58),
+                      color: Color.fromARGB(255, 47, 119, 126),
                       borderRadius: BorderRadius.all(
                         Radius.circular(10),
                       )),
@@ -321,7 +380,7 @@ class _ProfileState extends State<Profile> {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       // Set background color
-                      backgroundColor: const Color.fromARGB(255, 57, 32, 58),
+                      backgroundColor: const Color.fromARGB(255, 47, 119, 126),
                       // Set shape (optional, uncomment if desired)
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),

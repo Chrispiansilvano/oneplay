@@ -1,8 +1,6 @@
-import "package:firebase_storage/firebase_storage.dart";
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:oneplay/components/StorageService/storage_service.dart';
-import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:video_player/video_player.dart';
 
 class MediaPlayer extends StatefulWidget {
@@ -15,18 +13,17 @@ class MediaPlayer extends StatefulWidget {
 }
 
 class _MediaPlayerState extends State<MediaPlayer> {
- 
   @override
   void initState() {
     super.initState();
-   
   }
+
   @override
   Widget build(BuildContext context) {
     final Storage storage = Storage();
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 57, 32, 58),
+        // backgroundColor: const Color.fromARGB(255, 2, 30, 48),
         leading: Container(
           // padding: const EdgeInsets.all(5),
           padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
