@@ -40,6 +40,8 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Navigation Example',
       theme: ThemeData(
+        // inputDecorationTheme: const InputDecorationTheme(
+        //     labelStyle: TextStyle(color: Color.fromARGB(255, 47, 119, 126))),
         colorScheme:
             ColorScheme.fromSwatch(primarySwatch: Colors.blue).copyWith(
           background: const Color.fromARGB(255, 7, 23, 33),

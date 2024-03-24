@@ -200,7 +200,7 @@ class PayMentMethod extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const ConfirmPayment()));
+                          builder: (context) =>  ConfirmPayment()));
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.8,
