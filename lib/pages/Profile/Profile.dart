@@ -47,11 +47,13 @@ class _ProfileState extends State<Profile> {
           await FirebaseFirestore.instance.collection('Users').doc(uid).get();
       if (docSnapshot.exists) {
         final userData = docSnapshot.data();
-        setState(() {
-          _username = userData?['username'] ??
-              ''; // Use null-ish coalescing for both levels
-          _email = user.email!;
-        });
+        if (mounted) {
+          setState(() {
+            _username = userData?['username'] ??
+                ''; // Use null-ish coalescing for both levels
+            _email = user.email!;
+          });
+        }
       } else {
         // Handle case where user document is not found
       }

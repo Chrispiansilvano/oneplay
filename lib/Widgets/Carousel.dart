@@ -44,6 +44,7 @@ class _CarouselState extends State<Carousel> {
     _imageNamesFuture = getStorageImageNames();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
@@ -96,7 +97,14 @@ class _CarouselState extends State<Carousel> {
             } else if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));
             } else {
-              return const CircularProgressIndicator();
+              return Container(
+                height: 200,
+                width: MediaQuery.of(context).size.width * 0.90,
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  color: Color.fromARGB(255, 17, 41, 54),
+                ),
+              );
             }
           },
         ),
@@ -124,7 +132,14 @@ class _CarouselState extends State<Carousel> {
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else {
-          return const CircularProgressIndicator();
+          return Container(
+            height: 200,
+            width: MediaQuery.of(context).size.width * 0.90,
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              color: Color.fromARGB(255, 17, 41, 54),
+            ),
+          );
         }
       },
     );

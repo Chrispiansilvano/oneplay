@@ -39,8 +39,13 @@ class _MovieListState extends State<MovieList> {
         }
 
         if (!snapshot.hasData) {
-          return const CircularProgressIndicator(
-            color: Color.fromARGB(255, 255, 0, 0),
+          return Container(
+            height: 170,
+            width: 150,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.0),
+              color: const Color.fromARGB(255, 17, 41, 54),
+            ),
           );
         }
 
@@ -108,12 +113,13 @@ class _MovieListState extends State<MovieList> {
                               loadingBuilder:
                                   (context, child, loadingProgress) {
                                 if (loadingProgress == null) return child;
-                                return  Center(
-                                  child:  Container(
-                    height: 170,
-                    width: 200,
-                    decoration: const BoxDecoration(color: Color.fromARGB(170, 56, 31, 56)),
-                  ),
+                                return Center(
+                                  child: Container(
+                                    height: 170,
+                                    width: 200,
+                                    decoration: const BoxDecoration(
+                                        color: Color.fromARGB(170, 56, 31, 56)),
+                                  ),
                                   // CircularProgressIndicator(
                                   //   color: Colors.green,
                                   // ),

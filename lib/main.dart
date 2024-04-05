@@ -8,6 +8,7 @@ import 'package:oneplay/pages/Michezo/Michezo.dart';
 import 'package:oneplay/pages/Movies/Movies.dart';
 import 'package:oneplay/pages/Profile/Profile.dart';
 import 'package:oneplay/pages/Reels/Reels.dart';
+import 'package:oneplay/pages/SearchComponent/Searchpage.dart';
 import 'package:oneplay/pages/Series/Series.dart';
 import 'package:oneplay/pages/Trending/Trending.dart';
 import 'package:oneplay/pages/Tv/Tv.dart';
@@ -102,16 +103,151 @@ class _MyHomePageState extends State<MyHomePage> {
     ];
   }
 
+  int currentIndex = 0;
+  static final List<Widget> _widgetOptions = <Widget>[
+    const HomePage(), // Your Home page with TabBarView
+    Reels(), // Your Explore page
+    const Tv(), // Your Settings page
+    const Profile(),
+    // SignUp(),
+    // const LogIn(),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return PersistentTabView(
-      context,
-      screens: _pages,
-      items: _navBarsItems(),
-      controller: _controller,
-      navBarStyle: NavBarStyle.simple,
-      backgroundColor: const Color.fromARGB(255, 4, 21, 48),
-      popAllScreensOnTapOfSelectedTab: true,
+    // bool isKeyboardOpen = MediaQuery.of(context).viewInsets.bottom != 0.0;
+
+    return Scaffold(
+      body: Container(
+        child: _widgetOptions.elementAt(currentIndex),
+      ),
+      bottomNavigationBar:
+          // bottomNavigationBar: Theme(
+
+          //   data: Theme.of(context).copyWith(
+          //     // sets the background color of the `BottomNavigationBar`
+          //     canvasColor: const Color.fromARGB(255, 7, 23, 33), // Updated to white
+
+          //     // sets the active color of the `BottomNavigationBar`
+          //     primaryColor:
+          //         const Color.fromARGB(255, 126, 196, 236), // Updated to green
+
+          //     // sets the inactive color of the `BottomNavigationBar`
+          //     unselectedWidgetColor: Colors.black, // Updated to black
+          //     textTheme: Theme.of(context).textTheme.copyWith(
+          //           bodySmall: const TextStyle(
+          //             color: Colors.black, // Updated to black
+          //             fontWeight: FontWeight.normal, // Updated to normal weight
+          //           ),
+          //           // Optionally, you can also modify the selected label style
+          //           // caption: const TextStyle(
+          //           //   color: Colors.green,
+          //           //   fontWeight: FontWeight.bold,
+          //           // ),
+          //         ),
+          //   ),
+          //   child:
+          BottomNavigationBar(
+        showUnselectedLabels: true,
+        showSelectedLabels: false,
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+              icon: const Icon(Icons.home_outlined),
+              label: "Home",
+              activeIcon: Container(
+                  height: 35,
+                  width: 100,
+                  decoration: const BoxDecoration(
+                      color: Color.fromARGB(255, 47, 119, 126),
+                      borderRadius: BorderRadius.all(Radius.circular(5))),
+                  child: const Center(
+                    child: Row(
+                      children: [
+                        Padding(padding: EdgeInsets.fromLTRB(10, 0, 0, 0)),
+                        Icon(Icons.home_filled),
+                        Padding(padding: EdgeInsets.fromLTRB(10, 0, 0, 0)),
+                        Text(
+                          'Home',
+                          style: TextStyle(color: Colors.white),
+                        )
+                      ],
+                    ),
+                  ))),
+          BottomNavigationBarItem(
+              icon: const Icon(Icons.movie_outlined),
+              label: 'Reels',
+              activeIcon: Container(
+                  height: 35,
+                  width: 100,
+                  decoration: const BoxDecoration(
+                      color: Color.fromARGB(255, 47, 119, 126),
+                      borderRadius: BorderRadius.all(Radius.circular(5))),
+                  child: const Row(
+                    children: [
+                      Padding(padding: EdgeInsets.fromLTRB(10, 0, 0, 0)),
+                      Icon(Icons.movie_rounded),
+                      Padding(padding: EdgeInsets.fromLTRB(10, 0, 0, 0)),
+                      Text(
+                        'Reels',
+                        style: TextStyle(color: Colors.white),
+                      )
+                    ],
+                  ))),
+          BottomNavigationBarItem(
+              icon: const Icon(Icons.live_tv_outlined),
+              label: 'Live Tv',
+              activeIcon: Container(
+                  height: 35,
+                  width: 100,
+                  decoration: const BoxDecoration(
+                      color: Color.fromARGB(255, 47, 119, 126),
+                      borderRadius: BorderRadius.all(Radius.circular(5))),
+                  child: const Row(
+                    children: [
+                      Padding(padding: EdgeInsets.fromLTRB(10, 0, 0, 0)),
+                      Icon(Icons.live_tv_rounded),
+                      Padding(padding: EdgeInsets.fromLTRB(10, 0, 0, 0)),
+                      Text(
+                        'Live Tv',
+                        style: TextStyle(color: Colors.white),
+                      )
+                    ],
+                  ))),
+          BottomNavigationBarItem(
+              icon: const Icon(Icons.account_circle_outlined),
+              label: 'Profile',
+              activeIcon: Container(
+                  height: 35,
+                  width: 100,
+                  decoration: const BoxDecoration(
+                      color: Color.fromARGB(255, 47, 119, 126),
+                      borderRadius: BorderRadius.all(Radius.circular(5))),
+                  child: const Row(
+                    children: [
+                      Padding(padding: EdgeInsets.fromLTRB(10, 0, 0, 0)),
+                      Icon(Icons.account_circle),
+                      Padding(padding: EdgeInsets.fromLTRB(10, 0, 0, 0)),
+                      Text(
+                        'Reels',
+                        style: TextStyle(color: Colors.white),
+                      )
+                    ],
+                  ))),
+        ],
+        currentIndex: currentIndex,
+        onTap: ((int index) {
+          setState(() {
+            currentIndex = index;
+          });
+        }),
+        // The background color should be white, so it is removed here.
+        // backgroundColor: Colors.white,
+        selectedItemColor:
+            const Color.fromARGB(255, 255, 255, 255), // Updated to green
+        unselectedItemColor:
+            const Color.fromARGB(255, 134, 135, 135), // Updated to black
+      ),
+      // ),
     );
   }
 
@@ -130,6 +266,7 @@ class HomePage extends StatelessWidget {
     return DefaultTabController(
       length: 5, // Number of tabs
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           // backgroundColor: const Color.fromARGB(255, 7, 39, 59),
           backgroundColor: const Color.fromARGB(255, 20, 62, 87),
@@ -152,13 +289,21 @@ class HomePage extends StatelessWidget {
                   fontWeight: FontWeight.w600),
             ),
           ),
-          actions: const [
+          actions: [
             Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-              child: Icon(
-                Icons.search,
-                size: 25,
-                color: Colors.white,
+              padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SearchPage()));
+                },
+                child: const Icon(
+                  Icons.search,
+                  size: 25,
+                  color: Colors.white,
+                ),
               ),
             )
           ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oneplay/pages/Subscription/SuccsesfullyPay.dart';
 
 class ConfirmPayment extends StatefulWidget {
   const ConfirmPayment({super.key});
@@ -32,6 +33,7 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
       body: SingleChildScrollView(
         reverse: true,
         child: Container(
+          // height: MediaQuery.of(context).size.height,
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment
@@ -116,7 +118,7 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
                         child: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.80,
+                          width: MediaQuery.of(context).size.width * 0.90,
                           child: TextFormField(
                             controller: mobilePaymentNo,
                             decoration: InputDecoration(
@@ -139,10 +141,39 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
                       ),
                       const Expanded(child: SizedBox())
                     ],
-                  )
+                  ),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.80,
+                          child: const Flex(
+                            direction: Axis.horizontal,
+                            children: [
+                              Flexible(
+                                flex: 1,
+                                child: Text(
+                                  'Tips: Make sure an account balance is greater than 2,000 TSh',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const Expanded(child: SizedBox())
+                    ],
+                  ),
                 ],
               )),
-              const Expanded(child: SizedBox()),
+              // const Expanded(child: SizedBox()),
+              const SizedBox(
+                height: 25,
+              ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(
                   0,
@@ -155,7 +186,7 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const ConfirmPayment()));
+                            builder: (context) => const SuccessPaid()));
                   },
                   child: Container(
                     width: MediaQuery.of(context).size.width * 0.8,
@@ -165,7 +196,7 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
                         color: Color.fromARGB(255, 126, 196, 236)),
                     child: const Center(
                       child: Text(
-                        'Subscribe Now',
+                        'Confirm Payment',
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
