@@ -118,7 +118,9 @@ class _MovieListState extends State<MovieList> {
                                     height: 170,
                                     width: 200,
                                     decoration: const BoxDecoration(
-                                        color: Color.fromARGB(170, 56, 31, 56)),
+                                      // color: Color.fromARGB(170, 56, 31, 56),
+                                      color: Color.fromARGB(255, 17, 41, 54),
+                                    ),
                                   ),
                                   // CircularProgressIndicator(
                                   //   color: Colors.green,
@@ -140,11 +142,26 @@ class _MovieListState extends State<MovieList> {
                 } else if (snapshot.hasError) {
                   return Text('Error loading image: ${snapshot.error}');
                 } else {
-                  return Container(
-                    height: 120,
-                    width: 200,
-                    decoration: const BoxDecoration(
-                        color: Color.fromARGB(255, 57, 32, 58)),
+                  return Column(
+                    children: [
+                      Container(
+                        height: 120,
+                        width: 200,
+                        decoration: const BoxDecoration(
+                          color: Color.fromARGB(255, 17, 41, 54),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        height: 25,
+                        width: 200,
+                        decoration: const BoxDecoration(
+                          color: Color.fromARGB(255, 17, 41, 54),
+                        ),
+                      ),
+                    ],
                   );
                   // CircularProgressIndicator(
                   //   color: Colors.yellow,

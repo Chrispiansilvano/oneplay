@@ -163,9 +163,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: const Center(
                     child: Row(
                       children: [
-                        Padding(padding: EdgeInsets.fromLTRB(10, 0, 0, 0)),
+                        Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
                         Icon(Icons.home_filled),
-                        Padding(padding: EdgeInsets.fromLTRB(10, 0, 0, 0)),
+                        Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
                         Text(
                           'Home',
                           style: TextStyle(color: Colors.white),
@@ -178,7 +178,7 @@ class _MyHomePageState extends State<MyHomePage> {
               label: 'Reels',
               activeIcon: Container(
                   height: 35,
-                  width: 100,
+                  width: 90,
                   decoration: const BoxDecoration(
                       color: Color.fromARGB(255, 47, 119, 126),
                       borderRadius: BorderRadius.all(Radius.circular(5))),
@@ -204,9 +204,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       borderRadius: BorderRadius.all(Radius.circular(5))),
                   child: const Row(
                     children: [
-                      Padding(padding: EdgeInsets.fromLTRB(10, 0, 0, 0)),
+                      Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
                       Icon(Icons.live_tv_rounded),
-                      Padding(padding: EdgeInsets.fromLTRB(10, 0, 0, 0)),
+                      Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
                       Text(
                         'Live Tv',
                         style: TextStyle(color: Colors.white),
@@ -218,7 +218,7 @@ class _MyHomePageState extends State<MyHomePage> {
               label: 'Profile',
               activeIcon: Container(
                   height: 35,
-                  width: 100,
+                  width: 90,
                   decoration: const BoxDecoration(
                       color: Color.fromARGB(255, 47, 119, 126),
                       borderRadius: BorderRadius.all(Radius.circular(5))),
@@ -272,10 +272,9 @@ class HomePage extends StatelessWidget {
           backgroundColor: const Color.fromARGB(255, 20, 62, 87),
           leading: Container(
             // padding: const EdgeInsets.all(5),
-            padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
+            padding: const EdgeInsets.fromLTRB(10, 5, 0, 5),
             child: Image.asset(
-              'images/logo.png',
-
+              'images/logo2.png',
               // height: 60,
             ),
           ),
