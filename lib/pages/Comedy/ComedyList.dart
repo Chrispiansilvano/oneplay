@@ -1,23 +1,23 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:oneplay/pages/MediaView/MediaPlayerPage.dart';
+import 'package:oneplay/pages/Comedy/ComedyPlayer.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
-class MovieList extends StatefulWidget {
+class ComedyList extends StatefulWidget {
   final String tag; // Tag to filter by (e.g., "Trending Now")
 
-  const MovieList({super.key, required this.tag});
+  const ComedyList({super.key, required this.tag});
 
   @override
-  _MovieListState createState() => _MovieListState();
+  _ComedyListState createState() => _ComedyListState();
 }
 
-class _MovieListState extends State<MovieList> {
-  Stream<QuerySnapshot>? moviesStream;
-  Stream<QuerySnapshot> getMoviesByTag(String tag) {
+class _ComedyListState extends State<ComedyList> {
+  Stream<QuerySnapshot>? comedyStream;
+  Stream<QuerySnapshot> getComedyByTag(String tag) {
     return FirebaseFirestore.instance
-        .collection('Movies')
+        .collection('Comedy')
         .where('Tags', arrayContains: tag)
         .snapshots();
   }
@@ -25,13 +25,13 @@ class _MovieListState extends State<MovieList> {
   @override
   void initState() {
     super.initState();
-    moviesStream = getMoviesByTag(widget.tag); // Get movies by tag
+    comedyStream = getComedyByTag(widget.tag); // Get movies by tag
   }
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: moviesStream!,
+      stream: comedyStream!,
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           // print('Error: ${snapshot.error}');
@@ -41,7 +41,7 @@ class _MovieListState extends State<MovieList> {
         if (!snapshot.hasData) {
           return Container(
             height: 170,
-            width: 150,
+            width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
               color: const Color.fromARGB(255, 17, 41, 54),
@@ -49,23 +49,23 @@ class _MovieListState extends State<MovieList> {
           );
         }
 
-        final movies = snapshot.data!.docs;
+        final comedies = snapshot.data!.docs;
         return GridView.builder(
           physics: const NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
+          // shrinkWrap: true,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3, // Two movies per row
-            crossAxisSpacing: 12.0,
+            crossAxisCount: 1, // Two movies per row
+            // crossAxisSpacing: 12.0,
             mainAxisSpacing: 12.0,
-            mainAxisExtent: 200,
+            mainAxisExtent: 260,
           ),
-          itemCount: movies.length,
+          itemCount: comedies.length,
           // itemCount: 5,
           itemBuilder: (context, index) {
-            final Map<String, dynamic> movieData =
-                movies[index].data() as Map<String, dynamic>;
+            final Map<String, dynamic> comedyData =
+                comedies[index].data() as Map<String, dynamic>;
 
-            final String thumbnailUrl = movieData['ThumbnailUrl'];
+            final String thumbnailUrl = comedyData['ThumbnailUrl'];
 
             Future<String> getDownloadUrl() async {
               final storageRef = FirebaseStorage.instance.ref(thumbnailUrl);
@@ -74,7 +74,7 @@ class _MovieListState extends State<MovieList> {
             }
 
             // final title = movieSnapshot.get('title');
-            final id = movies[index].id; // Extract movie ID
+            final id = comedies[index].id; // Extract movie ID
             return FutureBuilder<String>(
               future: getDownloadUrl(),
               builder: (context, snapshot) {
@@ -86,7 +86,7 @@ class _MovieListState extends State<MovieList> {
                     onTap: () {
                       PersistentNavBarNavigator.pushNewScreen(
                         context,
-                        screen: MediaPlayerPage(
+                        screen: ComedyPlayerPage(
                           id: id,
                         ),
                         withNavBar: true,
@@ -95,19 +95,19 @@ class _MovieListState extends State<MovieList> {
                       );
                     },
                     child: Container(
-                      // Adjusted from Container for flexibility
+                      // Ajusted from Container for flexibility
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
+                        color: const Color.fromARGB(255, 17, 41, 54),
+                        borderRadius: BorderRadius.circular(0),
                         // color: Colors.amberAccent.shade100,
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           ClipRRect(
-                            borderRadius: BorderRadius.circular(5),
                             child: Image.network(
                               downloadUrl,
-                              height: 170,
+                              height: 190,
                               width: double.infinity,
                               fit: BoxFit.cover,
                               loadingBuilder:
@@ -116,7 +116,7 @@ class _MovieListState extends State<MovieList> {
                                 return Center(
                                   child: Container(
                                     height: 170,
-                                    width: 200,
+                                    width: MediaQuery.of(context).size.width,
                                     decoration: const BoxDecoration(
                                       // color: Color.fromARGB(170, 56, 31, 56),
                                       color: Color.fromARGB(255, 17, 41, 54),
@@ -131,10 +131,45 @@ class _MovieListState extends State<MovieList> {
                                   const Center(child: Icon(Icons.error)),
                             ),
                           ),
-                          Text(
-                            movieData['title'],
-                            style: const TextStyle(color: Colors.white),
+                          const SizedBox(
+                            height: 7,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
+                            child: Text(
+                              comedyData['description'],
+                              style: const TextStyle(color: Colors.white),
+                            ),
                           ), // Use title from movieData
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
+                            child: Row(
+                              children: [
+                                Text(
+                                  comedyData['Views'],
+                                  style: const TextStyle(
+                                      color:
+                                          Color.fromARGB(255, 193, 193, 193)),
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                const Text(
+                                  "Views",
+                                  style: TextStyle(
+                                      color:
+                                          Color.fromARGB(255, 193, 193, 193)),
+                                ),
+                                // const SizedBox(
+                                //   width: 40,
+                                // ),
+                                // Text(
+                                //   comedyData['Views'],
+                                //   style: const TextStyle(color: Colors.white),
+                                // ),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -146,7 +181,7 @@ class _MovieListState extends State<MovieList> {
                     children: [
                       Container(
                         height: 120,
-                        width: 200,
+                        width: MediaQuery.of(context).size.width,
                         decoration: const BoxDecoration(
                           color: Color.fromARGB(255, 17, 41, 54),
                         ),
@@ -156,7 +191,7 @@ class _MovieListState extends State<MovieList> {
                       ),
                       Container(
                         height: 25,
-                        width: 200,
+                        width: MediaQuery.of(context).size.width,
                         decoration: const BoxDecoration(
                           color: Color.fromARGB(255, 17, 41, 54),
                         ),

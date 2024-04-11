@@ -8,7 +8,7 @@ import 'package:oneplay/pages/Michezo/Michezo.dart';
 import 'package:oneplay/pages/Movies/Movies.dart';
 import 'package:oneplay/pages/Profile/Profile.dart';
 import 'package:oneplay/pages/Reels/Reels.dart';
-import 'package:oneplay/pages/SearchComponent/Searchpage.dart';
+import 'package:oneplay/pages/SearchComponent/searchPage2.dart';
 import 'package:oneplay/pages/Series/Series.dart';
 import 'package:oneplay/pages/Trending/Trending.dart';
 import 'package:oneplay/pages/Tv/Tv.dart';
@@ -296,7 +296,7 @@ class HomePage extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const SearchPage()));
+                          builder: (context) => const Search()));
                 },
                 child: const Icon(
                   Icons.search,

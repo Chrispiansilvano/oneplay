@@ -5,16 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:oneplay/components/StorageService/storage_service.dart';
 import 'package:video_player/video_player.dart';
 
-class TrailerPage extends StatefulWidget {
+class MediaPlayerPage extends StatefulWidget {
   final String id; // Tag to filter by (e.g., "Trending Now")
 
-  const TrailerPage({super.key, required this.id});
+  const MediaPlayerPage({super.key, required this.id});
 
   @override
-  State<TrailerPage> createState() => _MediaPlayerState();
+  State<MediaPlayerPage> createState() => _MediaPlayerState();
 }
 
-class _MediaPlayerState extends State<TrailerPage> {
+class _MediaPlayerState extends State<MediaPlayerPage> {
   Future<Map<String, dynamic>>? movieDetailsFuture;
   VideoPlayerController? _videoPlayerController;
 
@@ -103,7 +103,14 @@ class _MediaPlayerState extends State<TrailerPage> {
                     }
                     if (snapshot.connectionState == ConnectionState.waiting ||
                         !snapshot.hasData) {
-                      return const CircularProgressIndicator();
+                      return Container(
+                        height: 170,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: const BoxDecoration(
+                          // color: Color.fromARGB(170, 56, 31, 56),
+                          color: Color.fromARGB(255, 17, 41, 54),
+                        ),
+                      );
                     }
                     return Container();
                   }),
@@ -143,7 +150,14 @@ class _MediaPlayerState extends State<TrailerPage> {
                             return Text(
                                 'Error loading Trailer: ${snapshot.error}');
                           } else {
-                            return const CircularProgressIndicator();
+                            return Container(
+                              height: 170,
+                              width: MediaQuery.of(context).size.width,
+                              decoration: const BoxDecoration(
+                                // color: Color.fromARGB(170, 56, 31, 56),
+                                color: Color.fromARGB(255, 17, 41, 54),
+                              ),
+                            );
                           }
                         },
                       );
@@ -406,7 +420,7 @@ class _MediaPlayerState extends State<TrailerPage> {
                                     // Wrap for better overflow handling
                                     children: cast
                                         .map((actor) => Text(
-                                              '$actor  ',
+                                              '$actor    ',
                                               style: const TextStyle(
                                                 fontSize: 15,
                                                 color: Color.fromARGB(
@@ -426,7 +440,21 @@ class _MediaPlayerState extends State<TrailerPage> {
                   }
                   if (snapshot.connectionState == ConnectionState.waiting ||
                       !snapshot.hasData) {
-                    return const CircularProgressIndicator();
+                    return Column(
+                      children: [
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          height: 50,
+                          width: MediaQuery.of(context).size.width,
+                          decoration: const BoxDecoration(
+                            // color: Color.fromARGB(170, 56, 31, 56),
+                            color: Color.fromARGB(255, 17, 41, 54),
+                          ),
+                        ),
+                      ],
+                    );
                   }
                   return Container();
                 },
